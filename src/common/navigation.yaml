@@ -4,10 +4,8 @@ sections:
       - path: /getting-started
         usePageTitles: true
         pages:
-          - path: /what-is-react
           - path: /what-is-next
           - path: /installation
-          - path: /adding-typescript
 
         sections:
           - title: Compared to ...
@@ -17,12 +15,18 @@ sections:
               - path: /vs-create-react-app
               - path: /vs-blitz-js
               - path: /vs-redwood-js
-      # - path: /getting-started
-      #   usePageTitles: true
+
+      - path: /basic-concepts
+        usePageTitles: true
+        pages:
+          - path: /project-structure
+          - path: /pages
+          - path: /components
+          - path: /css
+          - path: /static-files
+          - path: /environment-variables
+      # - path: /project
+      #   usePageTitles: false
       #   pages:
-      #   # sections:
-      #   #   - title: First Section
-      #   #     usePageTitles: true
-      #   #     pages:
-      #   #       - path: /section-one
-      #   #       - path: /section-two
+      #     - path: /structure
+      #     - path: /components
