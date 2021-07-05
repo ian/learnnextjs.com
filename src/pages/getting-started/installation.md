@@ -13,22 +13,34 @@ Note: Next.js requires Node.js 12.0 or later.
 
 It's easiest to use the `npx create-next-app` script which will automatically setup a blank project for you.
 
-```
-npx create-next-app
+```bash
+npx create-next-app --ts
 ```
 
 Afterwards, make sure to change to the newly created directory.
 
+## TypeScript
+
+Next.js supports Typescript out of the box
+
+### Why should you use TypeScript?
+
 ## Scripts
 
-### `yarn dev`
+```bash
+yarn dev
+```
 
 To run a development server, run `yarn dev`. This will start a local server on [http://localhost:3000](http://localhost:3000)
 
-### `yarn build`
+```bash
+yarn build
+```
 
 To build the project for production deployment, run `yarn build`
 
-### `yarn start`
+```bash
+yarn start
+```
 
 After the project has been built, to run the production optimized use `yarn start`
