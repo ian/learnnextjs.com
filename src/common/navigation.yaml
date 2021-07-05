@@ -1,0 +1,17 @@
+sections:
+  - pages:
+      - path: /
+      - path: /getting-started
+        usePageTitles: true
+        pages:
+          - path: /welcome
+          - path: /what-is-react
+          - path: /what-is-next
+
+        # sections:
+        #   - title: First Section
+        #     usePageTitles: true
+        #     pages:
+        #       - path: /section-one
+        #       - path: /section-two
+
