@@ -25,8 +25,16 @@ sections:
           - path: /css
           - path: /static-files
           - path: /environment-variables
-      # - path: /project
-      #   usePageTitles: false
-      #   pages:
-      #     - path: /structure
-      #     - path: /components
+
+      - path: /user-interface
+        usePageTitles: false
+        pages:
+          - path: /tailwind
+          - path: /chakra
+          - path: /others
+    sections:
+      - title: Compared to ...
+        usePageTitles: true
+        # pages:
+        #   - path: /vs-gatsby
+

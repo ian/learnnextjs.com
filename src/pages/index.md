@@ -1,12 +1,19 @@
 ---
-title: Learn Next.js the Easy Way
-description: Next.js is the leading React framework for developers who want flexibility on their web stack.
+title: The best-practices apporach to Next.js
+description:
 ---
 
-## Welcome!
+<!-- # Welcome to learnnextjs.com -->
+
+## What is this guide?
+
+This is meant to be a semi-opinionated view of building and architecting applications with Next.js.
+
+If you wanna get started, head over to [Getting Started](/getting-started/what-is-next) (aptly named)
+
+## Other resources
 
 There are lots of options for viewing API documentation, a short list is:
 
 - [nextjs.org](https://nextjs.org)
-
-This is meant to be a semi-opinionated view of building applications with Next.js.
+- [masteringnextjs.com](https://masteringnextjs.com)
