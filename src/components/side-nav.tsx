@@ -322,3 +322,16 @@ export const SideNav: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
     </Wrapper>
   )
 }
+
+// export const SideNav: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
+//   containerProps,
+//   ...rest
+// }) => {
+//   return (
+//     <Wrapper containerProps={containerProps} {...rest}>
+//       <Box width="100%" maxWidth="208px" style={{ marginBottom: 30 }}>
+//         <Search />
+//       </Box>
+//     </Wrapper>
+//   )
+// }

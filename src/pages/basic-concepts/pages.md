@@ -5,7 +5,7 @@ description: Pages are React components that handle requests.
 
 ## How to use
 
-Pages are React Components which
+Pages are React Components which correspond to URL requests.
 
 ```ts
 function HomePage(props) {

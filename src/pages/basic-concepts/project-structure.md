@@ -3,7 +3,7 @@ title: Project Structure
 description: What does a Next.js project look like?
 ---
 
-## Directories
+## Directory Structure
 
 While the choice of how to organize your project is ultimately up to you, developers tend to follow this project structure in general.
 
@@ -20,22 +20,4 @@ While the choice of how to organize your project is ultimately up to you, develo
 ├── next.config.js
 ├── tsconfig.json
 └── yarn.lock
-```
-
-## In Detail
-
-```
-.next
-```
-
-This is where build output goes, as well as development cache.
-
-```
-components/
-```
-
-This is where you will put reusable view Components, for example `<Header />` or `<Button />`.
-
-```
-pages/
 ```
