@@ -21,9 +21,11 @@ Afterwards, make sure to change to the newly created directory.
 
 ## TypeScript
 
-Next.js supports Typescript out of the box
+Next.js supports Typescript out of the box.
 
 ### Why should you use TypeScript?
+
+@todo
 
 ## Scripts
 
