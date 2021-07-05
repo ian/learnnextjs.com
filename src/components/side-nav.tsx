@@ -13,7 +13,6 @@ import { Text } from '@components/typography';
 import { css } from '@stacks/ui-core';
 import { SmartLink } from '@components/mdx';
 import { useMobileMenuState } from '@common/hooks/use-mobile-menu';
-import { useTheme } from '@emotion/react';
 
 const Wrapper: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
   width = `${SIDEBAR_WIDTH}px`,

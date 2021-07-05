@@ -60,17 +60,17 @@ interface NavItem {
 
 const nav: NavItem[] = [
   {
-    label: 'Start building',
+    label: 'Quicklinks',
     href: '',
     children: [
       {
-        label: 'Documentation',
-        href: 'https://docs.blockstack.org/',
-        target: '_self',
+        label: 'Next.js Documentation',
+        href: 'https://nextjs.org/',
+        // target: '_self',
       },
       {
-        label: 'GitHub',
-        href: 'https://github.com/blockstack',
+        label: 'Next.js GitHub',
+        href: 'https://github.com/vercel/next',
       },
       {
         label: 'Papers',
@@ -82,7 +82,7 @@ const nav: NavItem[] = [
       },
     ],
   },
-  { label: 'Testnet', href: 'https://www.blockstack.org/testnet' },
+  // { label: 'Testnet', href: 'https://www.blockstack.org/testnet' },
   // { label: 'Discover apps', href: 'https://app.co/' },
 ];
 
@@ -204,7 +204,8 @@ const LogoLink = React.memo(() => {
     <NextLink href="/" passHref>
       <Link _hover={{ textDecoration: 'none' }} as="a" display="flex">
         <Flex as="span" alignItems="center">
-          <StacksDocsLogo color={color('text-title')} />
+          {/* <StacksDocsLogo color={color('text-title')} /> */}
+          <span>learnnextjs.com</span>
         </Flex>
       </Link>
     </NextLink>

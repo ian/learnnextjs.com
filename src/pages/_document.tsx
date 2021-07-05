@@ -12,7 +12,6 @@ import { THEME_STORAGE_KEY } from '@common/constants';
 import { extractCritical } from '@emotion/server';
 import { MdxOverrides } from '@components/mdx/overrides';
 import { ColorModes } from '@components/color-modes/styles';
-import { ProgressBarStyles } from '@components/progress-bar';
 
 export default class MyDocument extends Document<DocumentProps> {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -23,7 +22,6 @@ export default class MyDocument extends Document<DocumentProps> {
       styles: (
         <>
           {MdxOverrides}
-          {ProgressBarStyles}
           {ColorModes}
           <style
             data-emotion-css={styles.ids.join(' ')}

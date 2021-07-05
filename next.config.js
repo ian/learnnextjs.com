@@ -55,34 +55,35 @@ module.exports = withFonts(
         use: 'yaml-loader',
       });
 
-      if (!options.dev) {
-        const splitChunks = config.optimization && config.optimization.splitChunks;
-        if (splitChunks) {
-          const cacheGroups = splitChunks.cacheGroups;
-          const test = /[\\/]node_modules[\\/](preact|preact-render-to-string|preact-context-provider)[\\/]/;
-          if (cacheGroups.framework) {
-            cacheGroups.preact = Object.assign({}, cacheGroups.framework, {
-              test,
-            });
-            cacheGroups.commons.name = 'framework';
-          } else {
-            cacheGroups.preact = {
-              name: 'commons',
-              chunks: 'all',
-              test,
-            };
-          }
-        }
+      // if (!options.dev) {
+      //   const splitChunks = config.optimization && config.optimization.splitChunks;
+      //   if (splitChunks) {
+      //     const cacheGroups = splitChunks.cacheGroups;
+      //     const test = /[\\/]node_modules[\\/](preact|preact-render-to-string|preact-context-provider)[\\/]/;
+      //     if (cacheGroups.framework) {
+      //       cacheGroups.preact = Object.assign({}, cacheGroups.framework, {
+      //         test,
+      //       });
+      //       cacheGroups.commons.name = 'framework';
+      //     } else {
+      //       cacheGroups.preact = {
+      //         name: 'commons',
+      //         chunks: 'all',
+      //         test,
+      //       };
+      //     }
+      //   }
 
-        // Install webpack aliases:
-        const aliases = config.resolve.alias || (config.resolve.alias = {});
-        aliases.react = aliases['react-dom'] = 'preact/compat';
-        aliases['react-ssr-prepass'] = 'preact-ssr-prepass';
-      }
-      config.resolve.alias['@emotion/react'] = path.resolve(
-        __dirname,
-        './node_modules/@emotion/react'
-      );
+      //   // Install webpack aliases:
+      //   const aliases = config.resolve.alias || (config.resolve.alias = {});
+      //   aliases.react = aliases['react-dom'] = 'preact/compat';
+      //   aliases['react-ssr-prepass'] = 'preact-ssr-prepass';
+      // }
+
+      // config.resolve.alias['@emotion/react'] = path.resolve(
+      //   __dirname,
+      //   './node_modules/@emotion/react'
+      // );
 
       return config;
     },
