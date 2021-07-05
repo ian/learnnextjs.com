@@ -1,6 +1,6 @@
 import React, { useCallback } from "react"
 import { useAppState } from "@common/hooks/use-app-state"
-import { State } from "@components/app-state/types"
+import { State } from "state/types"
 
 export const useMobileMenuState = () => {
   const { setState, mobileMenu: isOpen } = useAppState()

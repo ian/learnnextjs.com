@@ -1,5 +1,5 @@
 import React from "react"
-import { State } from "@components/app-state/types"
+import { State } from "state/types"
 import routes from "@common/routes"
 
 export const initialState: State = {

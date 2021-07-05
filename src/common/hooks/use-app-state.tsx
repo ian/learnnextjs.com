@@ -1,6 +1,6 @@
 import React from "react"
-import { AppStateContext } from "@components/app-state/context"
-import { State } from "@components/app-state/types"
+import { AppStateContext } from "state/context"
+import { State } from "state/types"
 
 interface UseAppStateReturn extends State {
   doChangeActiveSlug: (activeSlug: string) => void

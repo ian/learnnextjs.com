@@ -1,5 +1,5 @@
 import React from "react"
-import { AppStateContext, initialState } from "@components/app-state/context"
+import { AppStateContext, initialState } from "state/context"
 
 const AppStateProvider = ({ ...props }: any) => {
   const [state, setState] = React.useState(initialState)

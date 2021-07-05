@@ -1,5 +1,5 @@
 import React from "react"
-import { AppStateProvider } from "@components/app-state"
+import { AppStateProvider } from "state"
 import { BaseLayout } from "@components/layouts/base-layout"
 import { Meta } from "@components/meta-head"
 import { useFathom } from "@common/hooks/use-fathom"

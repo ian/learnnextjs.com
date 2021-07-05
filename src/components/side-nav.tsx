@@ -10,9 +10,9 @@ import { getCategory, getTitle, slugify } from "@common/utils"
 import { useRouter } from "next/router"
 import { getCapsizeStyles } from "@components/mdx/typography"
 import { Text } from "@components/typography"
-import { css } from "@stacks/ui-core"
 import { SmartLink } from "@components/mdx"
 import { useMobileMenuState } from "@common/hooks/use-mobile-menu"
+import Search from "@components/search"
 
 const Wrapper: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
   width = `${SIDEBAR_WIDTH}px`,
@@ -316,6 +316,9 @@ export const SideNav: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
   return (
     <Wrapper containerProps={containerProps} {...rest}>
       <Navigation />
+      <Box width="100%" maxWidth="208px">
+        <Search />
+      </Box>
     </Wrapper>
   )
 }

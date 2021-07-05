@@ -13,7 +13,7 @@ import {
 } from "@stacks/ui"
 import { useDocSearchKeyboardEvents } from "@docsearch/react"
 import { Text } from "@components/typography"
-import { SearchIcon } from "@components/icons/search"
+// import { SearchIcon } from "@components/icons/search"
 import Router from "next/router"
 import Link from "next/link"
 import { getCapsizeStyles } from "@components/mdx/typography"
@@ -174,7 +174,7 @@ export const SearchBox: React.FC<BoxProps> = React.memo((props) => {
               mr={space("tight")}
               opacity={0.6}
               color={color("text-caption")}>
-              <SearchIcon size="18px" />
+              {/* <SearchIcon size="18px" /> */}
             </Box>
             <Text
               opacity={0.8}
