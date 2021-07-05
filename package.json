@@ -132,6 +132,11 @@
     "check:urls": "find . -type f -name '*.md' ! -path './node_modules/*' ! -path './_site/*' | xargs -L1 npx markdown-link-check -q -c mlc_config.json",
     "check:style": "npx write-good *.md"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:prettier"
+    }
+  },
   "resolutions": {
     "eslint": "^7.17.0"
   }
