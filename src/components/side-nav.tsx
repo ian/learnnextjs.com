@@ -315,10 +315,10 @@ export const SideNav: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
 }) => {
   return (
     <Wrapper containerProps={containerProps} {...rest}>
-      <Navigation />
-      <Box width="100%" maxWidth="208px">
+      <Box width="100%" maxWidth="208px" style={{marginBottom: 30}}>
         <Search />
       </Box>
+      <Navigation />
     </Wrapper>
   )
 }
