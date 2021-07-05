@@ -100,7 +100,6 @@
     "@typescript-eslint/parser": "^4.1.0",
     "babel-plugin-styled-components": "^1.11.0",
     "husky": "^4.3.0",
-    "markdown-link-check": "^3.8.5",
     "next-transpile-modules": "^5.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -111,27 +110,21 @@
   },
   "private": true,
   "scripts": {
-    "build": "yarn clean:build-files && next telemetry disable && NODE_ENV=production next build",
-    "build:analyze": "yarn clean:build-files && next telemetry disable && NODE_ENV=production ANALYZE=true next build",
-    "start": "next telemetry disable && NODE_ENV=production next start",
+    "build": "yarn clean:build-files && NODE_ENV=production next build",
+    "build:analyze": "yarn clean:build-files && NODE_ENV=production ANALYZE=true next build",
+    "start": "NODE_ENV=production next start",
     "clean:build-files": "rimraf .next && rimraf .cache",
     "dev": "yarn clean:build-files && next dev",
     "build:cli-reference": "stx docs > src/_data/cli-reference.json",
     "export": "next export",
-    "lint": "yarn lint:prettier",
-    "lint:fix": "tslint \"src/**/*.{ts,tsx}\" --fix",
-    "lint:prettier": "prettier --config ./.prettierrc --check \"src/**/*.{ts,tsx,md,mdx}\" *.js",
-    "lint:prettier:fix": "prettier --config ./.prettierrc --write \"src/**/*.{ts,tsx,md,mdx}\" *.js",
+    "lint": "yarn lint:format && yarn lint:prose",
+    "lint:format": "prettier --config ./.prettierrc --check \"src/**/*.{ts,tsx,md,mdx}\" *.js",
+    "lint:format:fix": "prettier --config ./.prettierrc --write \"src/**/*.{ts,tsx,md,mdx}\" *.js",
+    "lint:prose": "yarn write-good *.md",
     "typecheck": "tsc --noEmit",
-    "typecheck:watch": "npm run typecheck -- --watch",
-    "check:urls": "find . -type f -name '*.md' ! -path './node_modules/*' ! -path './_site/*' | xargs -L1 npx markdown-link-check -q -c mlc_config.json",
-    "check:style": "npx write-good *.md"
+    "typecheck:watch": "npm run typecheck -- --watch"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:prettier"
-    }
-  },
+
   "resolutions": {
     "eslint": "^7.17.0"
   }
