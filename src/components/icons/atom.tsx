@@ -1,6 +1,6 @@
-import React from 'react';
-import { Box, BoxProps } from '@stacks/ui';
-export const AtomIcon: React.FC<BoxProps> = props => (
+import React from 'react'
+import { Box, BoxProps } from '@stacks/ui'
+export const AtomIcon: React.FC<BoxProps> = (props) => (
   <Box
     as="svg"
     width="44"
@@ -11,8 +11,7 @@ export const AtomIcon: React.FC<BoxProps> = props => (
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
-    {...props}
-  >
+    {...props}>
     <path stroke="none" d="M0 0h24v24H0z" />
     <line x1="12" y1="12" x2="12" y2="12.01" />
     <path
@@ -24,4 +23,4 @@ export const AtomIcon: React.FC<BoxProps> = props => (
       transform="rotate(-45 12 12)"
     />
   </Box>
-);
+)

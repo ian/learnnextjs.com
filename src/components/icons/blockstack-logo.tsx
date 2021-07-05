@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, BoxProps } from '@stacks/ui';
+import React from 'react'
+import { Box, BoxProps } from '@stacks/ui'
 
 export const BlockstackLogo = ({ size = '24px', ...props }: BoxProps) => (
   <Box width={size} height={size} color="var(--colors-invert)" {...props}>
@@ -12,4 +12,4 @@ export const BlockstackLogo = ({ size = '24px', ...props }: BoxProps) => (
       />
     </svg>
   </Box>
-);
+)

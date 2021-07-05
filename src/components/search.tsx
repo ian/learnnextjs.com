@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react'
 import {
   Box,
   Flex,
@@ -9,119 +9,117 @@ import {
   color,
   BoxProps,
   Grid,
-  Stack,
-} from '@stacks/ui';
-import { useDocSearchKeyboardEvents } from '@docsearch/react';
-import { Text } from '@components/typography';
-import { SearchIcon } from '@components/icons/search';
-import Router from 'next/router';
-import Link from 'next/link';
-import { getCapsizeStyles } from '@components/mdx/typography';
-import { useAppState } from '@common/hooks/use-app-state';
-import { css, Theme } from '@stacks/ui-core';
+  Stack
+} from '@stacks/ui'
+import { useDocSearchKeyboardEvents } from '@docsearch/react'
+import { Text } from '@components/typography'
+import { SearchIcon } from '@components/icons/search'
+import Router from 'next/router'
+import Link from 'next/link'
+import { getCapsizeStyles } from '@components/mdx/typography'
+import { useAppState } from '@common/hooks/use-app-state'
+import { css, Theme } from '@stacks/ui-core'
 
-const getLocalUrl = href => {
-  const _url = new URL(href);
+const getLocalUrl = (href) => {
+  const _url = new URL(href)
   const url = href
     .replace(_url.origin, '')
     .replace('#__next', '')
     .replace('.html', '')
-    .replace('storage/clidocs', 'core/cmdLineRef');
-  return url;
-};
+    .replace('storage/clidocs', 'core/cmdLineRef')
+  return url
+}
 
 function Hit({ hit, children }: any) {
-  const url = getLocalUrl(hit.url);
+  const url = getLocalUrl(hit.url)
   return (
     <Link href={url} as={url} passHref scroll={false}>
       <a>{children}</a>
     </Link>
-  );
+  )
 }
 
 const navigator = {
   navigate: async ({ suggestionUrl }: any) => {
-    const url = getLocalUrl(suggestionUrl);
-    return Router.push(url, url);
-  },
-};
+    const url = getLocalUrl(suggestionUrl)
+    return Router.push(url, url)
+  }
+}
 
 const Key: React.FC<BoxProps> = React.memo(({ children, ...rest }) => (
   <Grid
     style={{
-      placeItems: 'center',
+      placeItems: 'center'
     }}
     size="18px"
     bg={'rgba(0,0,0,0.11)'}
     borderRadius="3px"
     opacity={0.65}
-    {...rest}
-  >
+    {...rest}>
     <Text
       {...{
         color: color('text-body'),
         display: 'block',
         transform: 'translateY(1px)',
-        ...getCapsizeStyles(12, 12),
-      }}
-    >
+        ...getCapsizeStyles(12, 12)
+      }}>
       {children}
     </Text>
   </Grid>
-));
+))
 
 const searchOptions = {
   apiKey: '9040ba6d60f5ecb36eafc26396288875',
   indexName: 'blockstack',
-  navigator,
-};
+  navigator
+}
 
-let DocSearchModal: any = null;
+let DocSearchModal: any = null
 
-export const SearchBox: React.FC<BoxProps> = React.memo(props => {
-  const { setState, searchModal } = useAppState();
+export const SearchBox: React.FC<BoxProps> = React.memo((props) => {
+  const { setState, searchModal } = useAppState()
 
   const importDocSearchModalIfNeeded = React.useCallback(function importDocSearchModalIfNeeded() {
     if (DocSearchModal) {
-      return Promise.resolve();
+      return Promise.resolve()
     }
 
     return Promise.all([import('@docsearch/react/modal')]).then(([{ DocSearchModal: Modal }]) => {
-      DocSearchModal = Modal;
-    });
-  }, []);
+      DocSearchModal = Modal
+    })
+  }, [])
 
   const onOpen = React.useCallback(
     function onOpen() {
       void importDocSearchModalIfNeeded().then(() => {
-        console.log('reopening');
-        setState(state => ({ ...state, searchModal: 'open' }));
-      });
+        console.log('reopening')
+        setState((state) => ({ ...state, searchModal: 'open' }))
+      })
     },
     [importDocSearchModalIfNeeded]
-  );
+  )
 
   const onClose = React.useCallback(
     function onClose() {
-      setState(state => ({ ...state, searchModal: 'closed' }));
+      setState((state) => ({ ...state, searchModal: 'closed' }))
     },
     [setState]
-  );
+  )
 
   useEffect(() => {
-    if (searchModal === 'open') onOpen();
-  }, [searchModal]);
+    if (searchModal === 'open') onOpen()
+  }, [searchModal])
 
-  const searchButtonRef = React.useRef(null);
-  const isOpen = Boolean(searchModal === 'open' && DocSearchModal);
+  const searchButtonRef = React.useRef(null)
+  const isOpen = Boolean(searchModal === 'open' && DocSearchModal)
 
-  useDocSearchKeyboardEvents({ isOpen, onOpen, onClose, searchButtonRef });
+  useDocSearchKeyboardEvents({ isOpen, onOpen, onClose, searchButtonRef })
 
   return (
     <>
       <Portal>
         <Fade in={isOpen}>
-          {styles => (
+          {(styles) => (
             <Box
               position="absolute"
               zIndex={9999}
@@ -129,11 +127,10 @@ export const SearchBox: React.FC<BoxProps> = React.memo(props => {
               css={(theme: Theme) =>
                 css({
                   '.DocSearch.DocSearch-Container': {
-                    position: 'fixed',
-                  },
+                    position: 'fixed'
+                  }
                 })(theme)
-              }
-            >
+              }>
               <DocSearchModal
                 initialScrollY={window.scrollY}
                 onClose={onClose}
@@ -158,13 +155,12 @@ export const SearchBox: React.FC<BoxProps> = React.memo(props => {
         _hover={{
           borderColor: 'rgba(170, 179, 255, 0.8)',
           boxShadow: '0 0 0 3px rgba(170, 179, 255, 0.25)',
-          cursor: 'pointer',
+          cursor: 'pointer'
         }}
         style={{
-          userSelect: 'none',
+          userSelect: 'none'
         }}
-        {...props}
-      >
+        {...props}>
         <Flex alignItems="center" justifyContent="space-between">
           <Flex
             ref={searchButtonRef}
@@ -172,23 +168,20 @@ export const SearchBox: React.FC<BoxProps> = React.memo(props => {
             px={space('base-tight')}
             py={space('tight')}
             alignItems="center"
-            _hover={{ borderColor: themeColor('blue.400') }}
-          >
+            _hover={{ borderColor: themeColor('blue.400') }}>
             <Box
               transform="scaleX(-1)"
               mr={space('tight')}
               opacity={0.6}
-              color={color('text-caption')}
-            >
+              color={color('text-caption')}>
               <SearchIcon size="18px" />
             </Box>
             <Text
               opacity={0.8}
               {...{
                 color: color('text-caption'),
-                ...getCapsizeStyles(14, 28),
-              }}
-            >
+                ...getCapsizeStyles(14, 28)
+              }}>
               Search docs
             </Text>
           </Flex>
@@ -199,7 +192,7 @@ export const SearchBox: React.FC<BoxProps> = React.memo(props => {
         </Flex>
       </Box>
     </>
-  );
-});
+  )
+})
 
-export default SearchBox;
+export default SearchBox

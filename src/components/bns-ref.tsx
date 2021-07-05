@@ -1,8 +1,8 @@
-import React from 'react';
-import { Components } from '@components/mdx/mdx-components';
-import { TableOfContents } from '@components/toc';
-import hydrate from 'next-mdx-remote/hydrate';
-import { space } from '@stacks/ui';
+import React from 'react'
+import { Components } from '@components/mdx/mdx-components'
+import { TableOfContents } from '@components/toc'
+import hydrate from 'next-mdx-remote/hydrate'
+import { space } from '@stacks/ui'
 
 export const BNSErrorcodeReference = React.memo(({ content, headings }: any) => {
   return (
@@ -10,8 +10,8 @@ export const BNSErrorcodeReference = React.memo(({ content, headings }: any) => 
       <TableOfContents mb={space('extra-loose')} label="Contents" headings={headings} />
       {hydrate(content, { components: Components })}
     </>
-  );
-});
+  )
+})
 export const BNSFunctionReference = React.memo(({ content, headings }: any) => {
   return (
     <>
@@ -23,5 +23,5 @@ export const BNSFunctionReference = React.memo(({ content, headings }: any) => {
       />
       {hydrate(content, { components: Components })}
     </>
-  );
-});
+  )
+})

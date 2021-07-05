@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Pre,
   THead,
@@ -19,11 +19,11 @@ import {
   Hr,
   Li,
   Sup,
-  Section,
-} from '@components/mdx/components';
-import { Img } from '@components/mdx/image';
-import { Code } from '@components/mdx/components';
-import { PageReference } from '@components/custom-blocks/page-reference';
+  Section
+} from '@components/mdx/components'
+import { Img } from '@components/mdx/image'
+import { Code } from '@components/mdx/components'
+import { PageReference } from '@components/custom-blocks/page-reference'
 
 export const Components = {
   h1: () => null,
@@ -49,10 +49,10 @@ export const Components = {
   blockquote: Blockquote,
   sup: Sup,
   section: Section,
-  undefined: () => null,
-};
+  undefined: () => null
+}
 
 export const MDXComponents = {
   ...Components,
-  pagereference: PageReference,
-};
+  pagereference: PageReference
+}

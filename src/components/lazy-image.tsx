@@ -1,22 +1,22 @@
-import React from 'react';
-import { Box, BoxProps, useSafeLayoutEffect } from '@stacks/ui';
-import { useSpring, animated, config } from 'react-spring';
-import { useInView } from 'react-intersection-observer';
-import { makeCancelable } from '@common/utils';
-import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core';
+import React from 'react'
+import { Box, BoxProps, useSafeLayoutEffect } from '@stacks/ui'
+import { useSpring, animated, config } from 'react-spring'
+import { useInView } from 'react-intersection-observer'
+import { makeCancelable } from '@common/utils'
+import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core'
 
 interface ImageProps {
   /** The source of the image to load */
-  src: string;
+  src: string
 
   /** The source set of the image to load */
-  srcSet?: string;
+  srcSet?: string
 
   /** The alt text description of the image you are loading */
-  alt?: string;
+  alt?: string
 
   /** Sizes descriptor */
-  sizes?: string;
+  sizes?: string
 }
 
 const loadImage = (
@@ -26,17 +26,17 @@ const loadImage = (
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   new Promise((resolve, reject) => {
     if (typeof Image !== 'undefined') {
-      const image = new Image();
+      const image = new Image()
       if (srcSet) {
-        image.srcset = srcSet;
+        image.srcset = srcSet
       }
       if (alt) {
-        image.alt = alt;
+        image.alt = alt
       }
       if (sizes) {
-        image.sizes = sizes;
+        image.sizes = sizes
       }
-      image.src = src;
+      image.src = src
 
       /** @see: https://www.chromestatus.com/feature/5637156160667648 */
       if (experimentalDecode && 'decode' in image) {
@@ -49,13 +49,13 @@ const loadImage = (
             //@ts-ignore
             .then((image: HTMLImageElement) => resolve(image))
             .catch((err: any) => reject(err))
-        );
+        )
       }
 
-      image.onload = resolve;
-      image.onerror = reject;
+      image.onload = resolve
+      image.onerror = reject
     }
-  });
+  })
 
 export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwardRefWithAs<
   BoxProps,
@@ -63,46 +63,46 @@ export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwa
 >(({ as = 'img', src, srcSet, style = {}, placeholder, ...props }, forwardedRef) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    rootMargin: '200px 0px',
-  });
+    rootMargin: '200px 0px'
+  })
 
-  const [loading, setLoading] = React.useState(false);
+  const [loading, setLoading] = React.useState(false)
   const [source, setSrc] = React.useState({
     src: undefined,
-    srcSet: undefined,
-  });
+    srcSet: undefined
+  })
 
-  const loadingPromise = makeCancelable(loadImage({ src, srcSet }, true));
+  const loadingPromise = makeCancelable(loadImage({ src, srcSet }, true))
 
   const onLoad = React.useCallback(
     () =>
       requestAnimationFrame(() => {
-        console.log('on-load');
-        setSrc({ src, srcSet });
+        console.log('on-load')
+        setSrc({ src, srcSet })
       }),
     []
-  );
+  )
 
   useSafeLayoutEffect(() => {
     if (!source.src && !loading && inView) {
-      setLoading(true);
+      setLoading(true)
       loadingPromise.promise
-        .then(_res => {
-          console.log('loaded');
-          onLoad();
+        .then((_res) => {
+          console.log('loaded')
+          onLoad()
         })
-        .catch(e => {
+        .catch((e) => {
           // If the Loading Promise was canceled, it means we have stopped
           // loading due to unmount, rather than an error.
           if (!e.isCanceled) {
-            console.error('failed to load image');
+            console.error('failed to load image')
           }
-        });
+        })
     }
-  }, [source, loading, inView]);
+  }, [source, loading, inView])
 
-  const styleProps = useSpring({ opacity: source.src ? 1 : 0, config: config.gentle });
-  const placeholderProps = useSpring({ opacity: source.src ? 0 : 1, config: config.gentle });
+  const styleProps = useSpring({ opacity: source.src ? 1 : 0, config: config.gentle })
+  const placeholderProps = useSpring({ opacity: source.src ? 0 : 1, config: config.gentle })
 
   return (
     <Box
@@ -112,15 +112,14 @@ export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwa
       display="block"
       position="absolute"
       ref={ref}
-      {...props}
-    >
+      {...props}>
       <Box as="span" top={0} left={0} width="100%" position="absolute">
         <Box
           as={animated.img}
           width="100%"
           style={{
             filter: 'blur(5px)',
-            ...placeholderProps,
+            ...placeholderProps
           }}
           //@ts-ignore
           src={placeholder}
@@ -131,14 +130,14 @@ export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwa
           maxWidth="100%"
           width={['100%', '100%', 'inherit', 'inherit']}
           display="block"
-          as={(animated.img as unknown) as 'img'}
+          as={animated.img as unknown as 'img'}
           zIndex={99}
           style={
             {
               opacity: 0,
               willChange: 'opacity',
               ...style,
-              ...styleProps,
+              ...styleProps
             } as any
           }
           {...(source as any)}
@@ -146,5 +145,5 @@ export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwa
         />
       ) : null}
     </Box>
-  );
-});
+  )
+})

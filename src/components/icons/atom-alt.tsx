@@ -1,7 +1,7 @@
-import React from 'react';
-import { BaseSvg, SvgProps } from '@components/icons/_base';
+import React from 'react'
+import { BaseSvg, SvgProps } from '@components/icons/_base'
 
-export const AtomAltIcon: SvgProps = props => (
+export const AtomAltIcon: SvgProps = (props) => (
   <BaseSvg {...props}>
     <path stroke="none" d="M0 0h24v24H0z" />
     <circle cx="12" cy="12" r="3" />
@@ -12,4 +12,4 @@ export const AtomAltIcon: SvgProps = props => (
     <path d="M16 20.1a9 9 0 0 0 5 -7.1" />
     <path d="M6.2 5a9 9 0 0 1 11.4 0" />
   </BaseSvg>
-);
+)

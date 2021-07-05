@@ -1,7 +1,7 @@
-import { Box, color, space } from '@stacks/ui';
-import React from 'react';
-import { P } from '@components/mdx/components';
-import { border } from '@common/utils';
+import { Box, color, space } from '@stacks/ui'
+import React from 'react'
+import { P } from '@components/mdx/components'
+import { border } from '@common/utils'
 
 export const Table = ({ children, ...rest }: any) => (
   <Box my={space('extra-loose')} maxWidth="100%" {...rest}>
@@ -13,7 +13,7 @@ export const Table = ({ children, ...rest }: any) => (
       </Box>
     </Box>
   </Box>
-);
+)
 
 export const THead = (props: any) => {
   return (
@@ -28,8 +28,8 @@ export const THead = (props: any) => {
       pb={space('extra-tight')}
       {...props}
     />
-  );
-};
+  )
+}
 
 export const TData = (props: any) => (
   <Box
@@ -41,8 +41,7 @@ export const TData = (props: any) => (
     borderRight={border()}
     borderTop={border()}
     color={color('text-body')}
-    whiteSpace="normal"
-  >
+    whiteSpace="normal">
     <P {...props} />
   </Box>
-);
+)

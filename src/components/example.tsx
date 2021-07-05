@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Box,
   Flex,
@@ -9,23 +9,23 @@ import {
   BlockstackIcon,
   ChevronIcon,
   themeColor,
-  FlexProps,
-} from '@stacks/ui';
-import { Caption, Text } from '@components/typography';
+  FlexProps
+} from '@stacks/ui'
+import { Caption, Text } from '@components/typography'
 
-import { border } from '@common/utils';
+import { border } from '@common/utils'
 
 const Circle: React.FC<BoxProps> = ({ size = '72px', ...rest }) => (
   <Box size={size} borderRadius={size} bg={color('bg-alt')} {...rest} />
-);
+)
 
-const Avatar = ({ ...rest }) => <Circle {...rest} />;
+const Avatar = ({ ...rest }) => <Circle {...rest} />
 
 const Progress = ({ amount, ...rest }) => (
   <Box bg={color('bg-alt')} height="5px" borderRadius="5px" flexGrow={1} {...rest}>
     <Box width={`${amount}%`} bg={themeColor('green')} height="5px" borderRadius="5px" />
   </Box>
-);
+)
 
 const AppItem: React.FC<FlexProps & { name: string; usage: string }> = ({
   name,
@@ -48,9 +48,9 @@ const AppItem: React.FC<FlexProps & { name: string; usage: string }> = ({
       <ChevronIcon size="22px" color={color('text-caption')} direction="right" />
     </Flex>
   </ListItem>
-);
+)
 
-const ListItem: React.FC<FlexProps> = props => (
+const ListItem: React.FC<FlexProps> = (props) => (
   <Flex
     alignItems="center"
     justify="space-between"
@@ -58,27 +58,25 @@ const ListItem: React.FC<FlexProps> = props => (
     pb={space('base')}
     {...props}
   />
-);
+)
 
-const Title: React.FC<BoxProps> = props => (
+const Title: React.FC<BoxProps> = (props) => (
   <Text textStyle="body.small" color={color('text-title')} fontWeight="600" {...props} />
-);
+)
 
-export const ExampleComponent: React.FC<BoxProps> = props => (
+export const ExampleComponent: React.FC<BoxProps> = (props) => (
   <Box
     bg="white"
     border={border()}
     boxShadow="mid"
     borderRadius="lg"
     width={['100%', '320px', '320px', '320px']}
-    {...props}
-  >
+    {...props}>
     <Flex
       borderBottom={border()}
       p={space('base-loose')}
       justify="space-between"
-      alignItems="center"
-    >
+      alignItems="center">
       <Title>Data storage</Title>
       <Avatar border={border()} size="24px" />
     </Flex>
@@ -102,7 +100,7 @@ export const ExampleComponent: React.FC<BoxProps> = props => (
       </Stack>
     </Box>
   </Box>
-);
+)
 
 export const exampleCode = `
 <Box 
@@ -128,7 +126,7 @@ export const exampleCode = `
       <AppItem name="XOR Drive" usage="99.25 MB" />
     </Stack>
   </Box>
-</Box>`;
+</Box>`
 
 export const gaiaHubUsage = `
 <ListItem>
@@ -151,7 +149,7 @@ export const gaiaHubUsage = `
       color={color('text-caption')} 
       direction="right" />
   </Flex>
-</ListItem>`;
+</ListItem>`
 
 export const appItem = `
 <ListItem>
@@ -176,4 +174,4 @@ export const appItem = `
       color={color('text-caption')} 
       direction="right" />
   </Flex>
-</ListItem>`;
+</ListItem>`

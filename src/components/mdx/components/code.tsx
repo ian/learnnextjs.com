@@ -1,4 +1,4 @@
-import React, { Children } from 'react';
+import React, { Children } from 'react'
 import {
   Box,
   Flex,
@@ -8,50 +8,50 @@ import {
   space,
   useClipboard,
   themeColor,
-  FlexProps,
-} from '@stacks/ui';
-import { ClipboardCheckIcon } from '@components/icons/clipboard-check';
-import { border, onlyText } from '@common/utils';
-import { css, ForwardRefExoticComponentWithAs, forwardRefWithAs, Theme } from '@stacks/ui-core';
-import { Text } from '@components/typography';
-import { useHover } from 'use-events';
-import { IconButton } from '@components/icon-button';
-import { CopyIcon as BaseCopyIcon } from '@components/icons/copy';
+  FlexProps
+} from '@stacks/ui'
+import { ClipboardCheckIcon } from '@components/icons/clipboard-check'
+import { border, onlyText } from '@common/utils'
+import { css, ForwardRefExoticComponentWithAs, forwardRefWithAs, Theme } from '@stacks/ui-core'
+import { Text } from '@components/typography'
+import { useHover } from 'use-events'
+import { IconButton } from '@components/icon-button'
+import { CopyIcon as BaseCopyIcon } from '@components/icons/copy'
 
-const LINE_MINIMUM = 4;
+const LINE_MINIMUM = 4
 
 const getHighlightLineNumbers = (str: string): number[] | undefined => {
-  if (!str) return;
-  let numbers: number[] | undefined = undefined;
-  numbers = str.split(',').flatMap(s => {
-    if (!s.includes('-')) return +s;
+  if (!str) return
+  let numbers: number[] | undefined = undefined
+  numbers = str.split(',').flatMap((s) => {
+    if (!s.includes('-')) return +s
 
-    const [min, max] = s.split('-');
+    const [min, max] = s.split('-')
     // @ts-ignore
-    const final = Array.from({ length: max - min + 1 }, (_, n) => n + +min);
-    return final;
-  });
-  return numbers;
-};
+    const final = Array.from({ length: max - min + 1 }, (_, n) => n + +min)
+    return final
+  })
+  return numbers
+}
 
 const generateCssStylesForHighlightedLines = (numbers: number[] = []) => {
-  const record = {};
+  const record = {}
   const style = {
     bg: 'var(--colors-highlight-line-bg)',
     '&::before': {
-      borderRightColor: themeColor('ink.600'),
-    },
-  };
-  numbers.forEach(number => {
-    record[`&:nth-of-type(${number})`] = style;
-  });
-  return record;
-};
+      borderRightColor: themeColor('ink.600')
+    }
+  }
+  numbers.forEach((number) => {
+    record[`&:nth-of-type(${number})`] = style
+  })
+  return record
+}
 
 const CodeCopyButton: React.FC<
   { onCopy?: () => void; lines?: number; hasCopied?: boolean; styles?: any } & FlexProps
 > = ({ onCopy, lines, hasCopied, styles, ...props }) => {
-  const CopyIcon = hasCopied ? ClipboardCheckIcon : BaseCopyIcon;
+  const CopyIcon = hasCopied ? ClipboardCheckIcon : BaseCopyIcon
   return (
     <Flex
       size="56px"
@@ -66,15 +66,14 @@ const CodeCopyButton: React.FC<
       display={['none', 'none', 'flex']}
       pointerEvents="none"
       style={styles}
-      {...(props as any)}
-    >
+      {...(props as any)}>
       <IconButton
         title="Copy to clipboard"
         bg="ink.900"
         _hover={{
           color: 'white',
           // @ts-ignore
-          bg: themeColor('ink.900'),
+          bg: themeColor('ink.900')
         }}
         color={themeColor('ink.400') as any}
         onClick={onCopy}
@@ -83,112 +82,106 @@ const CodeCopyButton: React.FC<
         display="grid"
         placeItems="center"
         style={{
-          pointerEvents: 'all',
-        }}
-      >
+          pointerEvents: 'all'
+        }}>
         <CopyIcon size="20px" />
       </IconButton>
     </Flex>
-  );
-};
+  )
+}
 
-export const Code: React.FC<
-  BoxProps & { highlight?: string; lang?: string; lines: number }
-> = React.memo(
-  React.forwardRef(({ children, highlight, lang, lines, ...rest }, ref) => {
-    const [hover, bind] = useHover();
-    const numbers = getHighlightLineNumbers(highlight);
-    const convertSingleChildToString = child => onlyText(child).replace(/\n/g, '');
-    const tokenLines = Children.toArray(children).map(convertSingleChildToString);
-    const codeString = tokenLines.join('\n').replace(/\n\n\n/g, '\n\n');
-    const { hasCopied, onCopy } = useClipboard(codeString);
-    const hasLineNumbers = lines > LINE_MINIMUM && lang !== 'bash';
+export const Code: React.FC<BoxProps & { highlight?: string; lang?: string; lines: number }> =
+  React.memo(
+    React.forwardRef(({ children, highlight, lang, lines, ...rest }, ref) => {
+      const [hover, bind] = useHover()
+      const numbers = getHighlightLineNumbers(highlight)
+      const convertSingleChildToString = (child) => onlyText(child).replace(/\n/g, '')
+      const tokenLines = Children.toArray(children).map(convertSingleChildToString)
+      const codeString = tokenLines.join('\n').replace(/\n\n\n/g, '\n\n')
+      const { hasCopied, onCopy } = useClipboard(codeString)
+      const hasLineNumbers = lines > LINE_MINIMUM && lang !== 'bash'
 
-    return (
-      <Box
-        overflow="hidden"
-        position="relative"
-        css={(theme: Theme) =>
-          css({
-            '.token-line': {
-              counterIncrement: 'line',
-              '&__empty': {
-                height: '24px',
-              },
-              '.comment': {
-                color: 'rgba(255,255,255,0.5) !important',
-              },
-              ...generateCssStylesForHighlightedLines(numbers),
-              display: 'flex',
-              fontSize: '14px',
-              pl: !hasLineNumbers
-                ? space(['extra-loose', 'extra-loose', '20px', '20px'])
-                : undefined,
-              '&:before': hasLineNumbers
-                ? {
-                    flexShrink: 0,
-                    content: 'counter(line, decimal-leading-zero)',
-                    display: 'grid',
-                    placeItems: 'center',
-                    color: themeColor('ink.400'),
-                    mr: '16px',
-                    width: '42px',
-                    fontSize: '12px',
-                    transform: 'translateY(1px)',
-                    borderRight: '1px solid rgb(39,41,46)',
-                  }
-                : {},
-            },
-          })(theme) as any
-        }
-        {...bind}
-      >
+      return (
         <Box
-          className={lines <= 3 ? 'no-line-numbers' : ''}
+          overflow="hidden"
           position="relative"
-          ref={ref as any}
-          overflowX="auto"
-        >
-          <Box as="code" {...(rest as any)}>
-            <Box height="16px" width="100%" />
-            <Box
-              as="span"
-              position="absolute"
-              color="transparent"
-              top="16px"
-              pr={space(['extra-loose', 'extra-loose', '20px', '20px'])}
-              left={
-                lines <= LINE_MINIMUM || lang === 'bash'
+          css={(theme: Theme) =>
+            css({
+              '.token-line': {
+                counterIncrement: 'line',
+                '&__empty': {
+                  height: '24px'
+                },
+                '.comment': {
+                  color: 'rgba(255,255,255,0.5) !important'
+                },
+                ...generateCssStylesForHighlightedLines(numbers),
+                display: 'flex',
+                fontSize: '14px',
+                pl: !hasLineNumbers
                   ? space(['extra-loose', 'extra-loose', '20px', '20px'])
-                  : '58px'
+                  : undefined,
+                '&:before': hasLineNumbers
+                  ? {
+                      flexShrink: 0,
+                      content: 'counter(line, decimal-leading-zero)',
+                      display: 'grid',
+                      placeItems: 'center',
+                      color: themeColor('ink.400'),
+                      mr: '16px',
+                      width: '42px',
+                      fontSize: '12px',
+                      transform: 'translateY(1px)',
+                      borderRight: '1px solid rgb(39,41,46)'
+                    }
+                  : {}
               }
-              zIndex={99}
-            >
-              {codeString}
+            })(theme) as any
+          }
+          {...bind}>
+          <Box
+            className={lines <= 3 ? 'no-line-numbers' : ''}
+            position="relative"
+            ref={ref as any}
+            overflowX="auto">
+            <Box as="code" {...(rest as any)}>
+              <Box height="16px" width="100%" />
+              <Box
+                as="span"
+                position="absolute"
+                color="transparent"
+                top="16px"
+                pr={space(['extra-loose', 'extra-loose', '20px', '20px'])}
+                left={
+                  lines <= LINE_MINIMUM || lang === 'bash'
+                    ? space(['extra-loose', 'extra-loose', '20px', '20px'])
+                    : '58px'
+                }
+                zIndex={99}>
+                {codeString}
+              </Box>
+              <Box
+                as="span"
+                style={{
+                  userSelect: 'none',
+                  pointerEvents: 'none'
+                }}
+                display="flex"
+                flexDirection="column">
+                {children}
+              </Box>
+              <Box height="16px" width="100%" />
             </Box>
-            <Box
-              as="span"
-              style={{
-                userSelect: 'none',
-                pointerEvents: 'none',
-              }}
-              display="flex"
-              flexDirection="column"
-            >
-              {children}
-            </Box>
-            <Box height="16px" width="100%" />
           </Box>
+          <Fade in={hover}>
+            {(styles) => (
+              <CodeCopyButton styles={styles} hasCopied={hasCopied} lines={lines} onCopy={onCopy} />
+            )}
+          </Fade>
         </Box>
-        <Fade in={hover}>
-          {styles => (
-            <CodeCopyButton styles={styles} hasCopied={hasCopied} lines={lines} onCopy={onCopy} />
-          )}
-        </Fade>
-      </Box>
-    );
-  })
-);
+      )
+    })
+  )
 
 const preProps = {
   display: 'inline',
@@ -199,8 +192,8 @@ const preProps = {
   boxShadow: '0 1px 2px rgba(0, 0, 0, 0.04)',
   bg: color('bg'),
   fontSize: '14px',
-  lineHeight: '20px',
-};
+  lineHeight: '20px'
+}
 
 export const InlineCode: ForwardRefExoticComponentWithAs<BoxProps, 'code'> = forwardRefWithAs<
   BoxProps,
@@ -209,4 +202,4 @@ export const InlineCode: ForwardRefExoticComponentWithAs<BoxProps, 'code'> = for
   <Text ref={ref} as={as} {...(preProps as any)} {...(rest as any)}>
     {children}
   </Text>
-));
+))

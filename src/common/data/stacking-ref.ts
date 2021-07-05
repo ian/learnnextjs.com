@@ -1,35 +1,35 @@
-import { renderMdx } from '@common/data/mdx';
-import STACKING_REFERENCE from '../../_data/boot-contracts-reference.json';
+import { renderMdx } from '@common/data/mdx'
+import STACKING_REFERENCE from '../../_data/boot-contracts-reference.json'
 
 const wrapInClarityTicks = (string: string) => {
-  let newString = '```clarity';
+  let newString = '```clarity'
   newString += `
-`;
-  newString += string.trim();
+`
+  newString += string.trim()
   newString += `
-`;
-  newString += '```';
-  return newString;
-};
+`
+  newString += '```'
+  return newString
+}
 
 const inlineCode = (string: string) => {
-  let newString = '`';
-  newString += string.trim();
-  newString += '`';
+  let newString = '`'
+  newString += string.trim()
+  newString += '`'
 
   if (newString === '``') {
-    newString = '';
+    newString = ''
   }
 
-  return newString;
-};
+  return newString
+}
 
 const generateMarkdown = () => {
-  let publicFunctions = '';
-  let readonlyFunctions = '';
-  let errorCodes = '';
+  let publicFunctions = ''
+  let readonlyFunctions = ''
+  let errorCodes = ''
 
-  STACKING_REFERENCE.pox.public_functions.forEach(entry => {
+  STACKING_REFERENCE.pox.public_functions.forEach((entry) => {
     publicFunctions += `
 ### ${entry.name}
 
@@ -42,10 +42,10 @@ const generateMarkdown = () => {
 **Output:** ${inlineCode(entry.output_type)}
 
 ${entry.description.trim()}
-`;
-  });
+`
+  })
 
-  STACKING_REFERENCE.pox.read_only_functions.forEach(entry => {
+  STACKING_REFERENCE.pox.read_only_functions.forEach((entry) => {
     readonlyFunctions += `
 ### ${entry.name}
 
@@ -58,61 +58,61 @@ ${entry.description.trim()}
 **Output:** ${inlineCode(entry.output_type)}
 
 ${entry.description.trim()}
-`;
-  });
+`
+  })
 
-  STACKING_REFERENCE.pox.error_codes.forEach(entry => {
+  STACKING_REFERENCE.pox.error_codes.forEach((entry) => {
     errorCodes += `### ${entry.name}
 
 **Type:** ${inlineCode(entry.type)}
 
 **Value:** ${inlineCode(entry.value)}
-`;
-  });
+`
+  })
 
   return {
     publicFunctions,
     readonlyFunctions,
-    errorCodes,
-  };
-};
+    errorCodes
+  }
+}
 
-const getHeadings = arr =>
-  arr.map(entry => ({
+const getHeadings = (arr) =>
+  arr.map((entry) => ({
     content: entry.name,
-    level: 1,
-  }));
+    level: 1
+  }))
 
 export const convertStackingRefToMdx = async () => {
-  const markdown = generateMarkdown();
+  const markdown = generateMarkdown()
   const [_publicFunctions, _readonlyFunctions, _errorCodes] = await Promise.all([
     renderMdx(markdown.publicFunctions),
     renderMdx(markdown.readonlyFunctions),
-    renderMdx(markdown.errorCodes),
-  ]);
+    renderMdx(markdown.errorCodes)
+  ])
 
   const publicFunctions = {
     content: _publicFunctions,
-    headings: getHeadings(STACKING_REFERENCE.pox.public_functions),
-  };
+    headings: getHeadings(STACKING_REFERENCE.pox.public_functions)
+  }
 
   const readonlyFunctions = {
     content: _readonlyFunctions,
-    headings: getHeadings(STACKING_REFERENCE.pox.read_only_functions),
-  };
+    headings: getHeadings(STACKING_REFERENCE.pox.read_only_functions)
+  }
 
   const errorCodes = {
     content: _errorCodes,
-    headings: getHeadings(STACKING_REFERENCE.pox.error_codes),
-  };
+    headings: getHeadings(STACKING_REFERENCE.pox.error_codes)
+  }
 
   return {
     props: {
       mdx: {
         publicFunctions,
         readonlyFunctions,
-        errorCodes,
-      },
-    },
-  };
-};
+        errorCodes
+      }
+    }
+  }
+}

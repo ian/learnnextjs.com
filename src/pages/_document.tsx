@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import Document, {
   DocumentContext,
   DocumentProps,
@@ -6,17 +6,17 @@ import Document, {
   Html,
   Head,
   Main,
-  NextScript,
-} from 'next/document';
-import { THEME_STORAGE_KEY } from '@common/constants';
-import { extractCritical } from '@emotion/server';
-import { MdxOverrides } from '@components/mdx/overrides';
-import { ColorModes } from '@components/color-modes/styles';
+  NextScript
+} from 'next/document'
+import { THEME_STORAGE_KEY } from '@common/constants'
+import { extractCritical } from '@emotion/server'
+import { MdxOverrides } from '@components/mdx/overrides'
+import { ColorModes } from '@components/color-modes/styles'
 
 export default class MyDocument extends Document<DocumentProps> {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
-    const page = await ctx.renderPage();
-    const styles = extractCritical(page.html);
+    const page = await ctx.renderPage()
+    const styles = extractCritical(page.html)
     return {
       ...page,
       styles: (
@@ -28,8 +28,8 @@ export default class MyDocument extends Document<DocumentProps> {
             dangerouslySetInnerHTML={{ __html: styles.css }}
           />
         </>
-      ),
-    };
+      )
+    }
   }
 
   render() {
@@ -99,7 +99,7 @@ export default class MyDocument extends Document<DocumentProps> {
   font-display: swap;
   font-style: normal;
 }
-`,
+`
             }}
           />
         </Head>
@@ -115,7 +115,7 @@ try {
     .getPropertyValue('--colors-bg')
     document.documentElement.style.background = bgValue
 } catch (e) {}
-})()`,
+})()`
             }}
           />
           {/* <link rel="preconnect" href="https://bh4d9od16a-dsn.algolia.net" crossOrigin="true" />
@@ -124,6 +124,6 @@ try {
           <NextScript />
         </body>
       </Html>
-    );
+    )
   }
 }

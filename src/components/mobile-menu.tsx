@@ -1,28 +1,28 @@
-import React from 'react';
-import { Flex, Box, FlexProps, color, space, CloseIcon, Fade, Transition } from '@stacks/ui';
-import { SideNav } from '@components/side-nav';
-import { useLockBodyScroll } from '@common/hooks/use-lock-body-scroll';
-import { useMobileMenuState } from '@common/hooks/use-mobile-menu';
-import { border } from '@common/utils';
+import React from 'react'
+import { Flex, Box, FlexProps, color, space, CloseIcon, Fade, Transition } from '@stacks/ui'
+import { SideNav } from '@components/side-nav'
+import { useLockBodyScroll } from '@common/hooks/use-lock-body-scroll'
+import { useMobileMenuState } from '@common/hooks/use-mobile-menu'
+import { border } from '@common/utils'
 
-export const MobileMenu: React.FC<FlexProps> = props => {
-  const { isOpen, handleClose } = useMobileMenuState();
-  const [slideIn, setSlideIn] = React.useState(false);
+export const MobileMenu: React.FC<FlexProps> = (props) => {
+  const { isOpen, handleClose } = useMobileMenuState()
+  const [slideIn, setSlideIn] = React.useState(false)
   React.useEffect(() => {
     if (isOpen && !slideIn) {
       setTimeout(() => {
-        setSlideIn(true);
-      }, 0);
+        setSlideIn(true)
+      }, 0)
     } else if (slideIn && !isOpen) {
-      setSlideIn(false);
+      setSlideIn(false)
     }
-  }, [isOpen]);
+  }, [isOpen])
 
-  useLockBodyScroll(isOpen);
+  useLockBodyScroll(isOpen)
   return (
     <Box position="fixed" zIndex={999999} left={0} top={0} {...props}>
       <Fade in={isOpen} timeout={250}>
-        {styles => (
+        {(styles) => (
           <Box style={{ willChange: 'opacity', ...styles }}>
             <Box
               position="fixed"
@@ -39,20 +39,19 @@ export const MobileMenu: React.FC<FlexProps> = props => {
               styles={{
                 init: {
                   opacity: 0,
-                  transform: 'translateX(50%)',
+                  transform: 'translateX(50%)'
                 },
                 entered: {
                   opacity: 1,
-                  transform: 'translateX(0)',
+                  transform: 'translateX(0)'
                 },
                 exited: {
                   opacity: 0,
-                  transform: 'translateX(50%)',
-                },
+                  transform: 'translateX(50%)'
+                }
               }}
-              in={isOpen}
-            >
-              {slideStyles => (
+              in={isOpen}>
+              {(slideStyles) => (
                 <Box
                   position="fixed"
                   zIndex={999999}
@@ -63,10 +62,9 @@ export const MobileMenu: React.FC<FlexProps> = props => {
                   bg={color('bg')}
                   style={{
                     willChange: 'opacity, transform',
-                    ...slideStyles,
+                    ...slideStyles
                   }}
-                  borderLeft={border()}
-                >
+                  borderLeft={border()}>
                   <Flex
                     alignItems="center"
                     justifyContent="flex-end"
@@ -75,17 +73,15 @@ export const MobileMenu: React.FC<FlexProps> = props => {
                     position="fixed"
                     top={0}
                     right={0}
-                    zIndex={999999}
-                  >
+                    zIndex={999999}>
                     <Box
                       _hover={{
-                        cursor: 'pointer',
+                        cursor: 'pointer'
                       }}
                       onClick={handleClose}
                       size="14px"
                       mr={space('tight')}
-                      color={color('invert')}
-                    >
+                      color={color('invert')}>
                       <CloseIcon />
                     </Box>
                   </Flex>
@@ -93,8 +89,7 @@ export const MobileMenu: React.FC<FlexProps> = props => {
                     maxHeight="100vh"
                     overflow="auto"
                     px={space(['extra-loose', 'extra-loose', 'base', 'base'])}
-                    py={space('extra-loose')}
-                  >
+                    py={space('extra-loose')}>
                     <SideNav
                       height="unset"
                       overflow="inherit"
@@ -106,7 +101,7 @@ export const MobileMenu: React.FC<FlexProps> = props => {
                         pt: 0,
                         pb: 0,
                         px: 0,
-                        width: '100%',
+                        width: '100%'
                       }}
                     />
                   </Box>
@@ -117,5 +112,5 @@ export const MobileMenu: React.FC<FlexProps> = props => {
         )}
       </Fade>
     </Box>
-  );
-};
+  )
+}

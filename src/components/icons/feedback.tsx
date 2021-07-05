@@ -1,6 +1,6 @@
-import React from 'react';
-import { Box, BoxProps, transition } from '@stacks/ui';
-export type SvgProps = React.FC<BoxProps>;
+import React from 'react'
+import { Box, BoxProps, transition } from '@stacks/ui'
+export type SvgProps = React.FC<BoxProps>
 
 export const SadIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
   <Box
@@ -11,8 +11,7 @@ export const SadIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
-    {...props}
-  >
+    {...props}>
     <Box
       as="circle"
       transition={transition}
@@ -41,7 +40,7 @@ export const SadIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
       strokeLinecap="round"
     />
   </Box>
-);
+)
 
 export const NeutralIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
   <Box
@@ -52,8 +51,7 @@ export const NeutralIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
-    {...props}
-  >
+    {...props}>
     <Box
       as="circle"
       transition={transition}
@@ -77,7 +75,7 @@ export const NeutralIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
     />
     <path d="M7 17.5H14H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
   </Box>
-);
+)
 
 export const HappyIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
   <Box
@@ -88,8 +86,7 @@ export const HappyIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
-    {...props}
-  >
+    {...props}>
     <Box
       as="circle"
       transition={transition} // @ts-ignore
@@ -115,4 +112,4 @@ export const HappyIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
       fill="currentColor"
     />
   </Box>
-);
+)

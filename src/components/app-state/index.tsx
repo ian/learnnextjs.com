@@ -1,18 +1,18 @@
-import React from 'react';
-import { AppStateContext, initialState } from '@components/app-state/context';
+import React from 'react'
+import { AppStateContext, initialState } from '@components/app-state/context'
 
 const AppStateProvider = ({ ...props }: any) => {
-  const [state, setState] = React.useState(initialState);
+  const [state, setState] = React.useState(initialState)
 
   return (
     <AppStateContext.Provider
       value={{
         ...state,
-        setState,
+        setState
       }}
       {...props}
     />
-  );
-};
+  )
+}
 
-export { AppStateProvider, AppStateContext };
+export { AppStateProvider, AppStateContext }

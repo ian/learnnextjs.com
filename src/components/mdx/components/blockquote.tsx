@@ -1,12 +1,12 @@
-import { Box, Flex, BoxProps, color, themeColor, space } from '@stacks/ui';
-import React from 'react';
+import { Box, Flex, BoxProps, color, themeColor, space } from '@stacks/ui'
+import React from 'react'
 
-import { border } from '@common/utils';
-import { css, Theme } from '@stacks/ui-core';
-import { CheckCircleIcon } from '@components/icons/check-circle';
-import { AlertTriangleIcon } from '@components/icons/alert-triangle';
-import { AlertCircleIcon } from '@components/icons/alert-circle';
-import { InfoCircleIcon } from '@components/icons/info-circle';
+import { border } from '@common/utils'
+import { css, Theme } from '@stacks/ui-core'
+import { CheckCircleIcon } from '@components/icons/check-circle'
+import { AlertTriangleIcon } from '@components/icons/alert-triangle'
+import { AlertCircleIcon } from '@components/icons/alert-circle'
+import { InfoCircleIcon } from '@components/icons/info-circle'
 
 const getAlertStyles = (className: string) => {
   if (className?.includes('alert-success')) {
@@ -16,8 +16,8 @@ const getAlertStyles = (className: string) => {
       borderTopRightRadius: '0px',
       borderTopLeftRadius: '0px',
       accent: themeColor('green'),
-      icon: CheckCircleIcon,
-    };
+      icon: CheckCircleIcon
+    }
   }
   if (className?.includes('alert-info')) {
     return {
@@ -25,8 +25,8 @@ const getAlertStyles = (className: string) => {
       borderRadius: 'md',
       boxShadow: 'mid',
       accent: color('accent'),
-      icon: InfoCircleIcon,
-    };
+      icon: InfoCircleIcon
+    }
   }
   if (className?.includes('alert-warning')) {
     return {
@@ -35,8 +35,8 @@ const getAlertStyles = (className: string) => {
       borderTopRightRadius: '0px',
       borderTopLeftRadius: '0px',
       accent: '#F7AA00',
-      icon: AlertTriangleIcon,
-    };
+      icon: AlertTriangleIcon
+    }
   }
   if (className?.includes('alert-danger')) {
     return {
@@ -45,16 +45,16 @@ const getAlertStyles = (className: string) => {
       borderTopRightRadius: '0px',
       borderTopLeftRadius: '0px',
       accent: themeColor('red'),
-      icon: AlertCircleIcon,
-    };
+      icon: AlertCircleIcon
+    }
   }
-  return {};
-};
+  return {}
+}
 
 export const Blockquote: React.FC<BoxProps> = React.memo(
   React.forwardRef(({ children, className, ...rest }, ref) => {
-    const isAlert = className?.includes('alert');
-    const { accent, icon: Icon, ...styles } = getAlertStyles(className);
+    const isAlert = className?.includes('alert')
+    const { accent, icon: Icon, ...styles } = getAlertStyles(className)
     return (
       <Box
         as="blockquote"
@@ -62,8 +62,7 @@ export const Blockquote: React.FC<BoxProps> = React.memo(
         my={space('extra-loose')}
         className={className}
         ref={ref as any}
-        {...rest}
-      >
+        {...rest}>
         <Box
           border="1px solid"
           {...{
@@ -77,18 +76,17 @@ export const Blockquote: React.FC<BoxProps> = React.memo(
             borderRadius: 'md',
             boxShadow: isAlert ? 'mid' : 'unset',
             py: space('base'),
-            px: space('base'),
+            px: space('base')
           }}
           css={(theme: Theme) =>
             css({
               '& p': {
                 flexGrow: 1,
-                pt: '4px',
-              },
+                pt: '4px'
+              }
             })(theme)
           }
-          {...styles}
-        >
+          {...styles}>
           {Icon && (
             <Flex alignItems="center" height="28x" flexShrink={0} color={accent} width="22px">
               <Box position="absolute" top="16px" size="22px">
@@ -101,6 +99,6 @@ export const Blockquote: React.FC<BoxProps> = React.memo(
           </Box>
         </Box>
       </Box>
-    );
+    )
   })
-);
+)

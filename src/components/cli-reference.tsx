@@ -1,29 +1,29 @@
-import React from 'react';
-import cliReferenceData from '../_data/cli-reference.json';
-import { Components } from '@components/mdx/mdx-components';
-import { Grid, Box, color } from '@stacks/ui';
-import { border, onlyText, slugify } from '@common/utils';
-import hydrate from 'next-mdx-remote/hydrate';
+import React from 'react'
+import cliReferenceData from '../_data/cli-reference.json'
+import { Components } from '@components/mdx/mdx-components'
+import { Grid, Box, color } from '@stacks/ui'
+import { border, onlyText, slugify } from '@common/utils'
+import hydrate from 'next-mdx-remote/hydrate'
 
 const styles = {
   maxWidth: '100%',
   overflowX: 'auto',
   overflowY: 'hidden',
   whiteSpace: 'pre',
-  display: 'inline-block',
-};
+  display: 'inline-block'
+}
 const cleanTheChildren = (children: any) => {
-  const text = onlyText(children).trim();
+  const text = onlyText(children).trim()
   if (text.startsWith('$')) {
-    return text.replace('$', '');
+    return text.replace('$', '')
   }
-  return text;
-};
+  return text
+}
 const InlineCode = ({ children, ...rest }: any) => (
   <Components.inlineCode {...styles} {...rest}>
     {cleanTheChildren(children)}
   </Components.inlineCode>
-);
+)
 
 const ReferenceEntry = ({ entry, usage }) => (
   <Components.section>
@@ -41,8 +41,8 @@ const ReferenceEntry = ({ entry, usage }) => (
             {...props}
             style={{ display: 'block', wordBreak: 'break-word', hyphens: 'auto' }}
           />
-        ),
-      },
+        )
+      }
     })}
     <Components.h3 id={`${slugify(entry.command)}-arguments`}>Arguments</Components.h3>
     <Grid
@@ -51,8 +51,7 @@ const ReferenceEntry = ({ entry, usage }) => (
       borderBottom={border()}
       gridGap="base"
       gridTemplateColumns="repeat(4, minmax(0,25%))"
-      color={color('text-caption')}
-    >
+      color={color('text-caption')}>
       <Box fontSize="14px" fontWeight="bold">
         Name
       </Box>
@@ -67,7 +66,7 @@ const ReferenceEntry = ({ entry, usage }) => (
       </Box>
     </Grid>
     {entry.args.map((arg, index) => {
-      const { name, type, value, format } = arg;
+      const { name, type, value, format } = arg
       return (
         <Grid
           borderBottom={border()}
@@ -76,8 +75,7 @@ const ReferenceEntry = ({ entry, usage }) => (
           gridGap="base"
           gridTemplateColumns="repeat(4, minmax(0,25%))"
           key={index}
-          color={color('text-body')}
-        >
+          color={color('text-body')}>
           <Box>
             <InlineCode>${name}</InlineCode>
           </Box>
@@ -91,10 +89,10 @@ const ReferenceEntry = ({ entry, usage }) => (
             <InlineCode>${format}</InlineCode>
           </Box>
         </Grid>
-      );
+      )
     })}
   </Components.section>
-);
+)
 
 export const CLIReferenceTable = ({ mdx }) =>
-  cliReferenceData.map((entry, index) => <ReferenceEntry usage={mdx[index]} entry={entry} />);
+  cliReferenceData.map((entry, index) => <ReferenceEntry usage={mdx[index]} entry={entry} />)

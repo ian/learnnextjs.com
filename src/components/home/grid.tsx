@@ -1,7 +1,7 @@
-import React from 'react';
-import { Box, space, color } from '@stacks/ui';
+import React from 'react'
+import { Box, space, color } from '@stacks/ui'
 
-import { Body, SubHeading } from '@components/home/text';
+import { Body, SubHeading } from '@components/home/text'
 export const GridItem = ({ icon: Icon, title, body, ...rest }) => {
   return (
     <Box {...rest}>
@@ -15,5 +15,5 @@ export const GridItem = ({ icon: Icon, title, body, ...rest }) => {
       </SubHeading>
       <Body>{body}</Body>
     </Box>
-  );
-};
+  )
+}

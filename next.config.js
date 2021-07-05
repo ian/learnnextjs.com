@@ -1,10 +1,10 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-});
-const path = require('path');
-const { remarkPlugins } = require('./lib/remark-plugins');
-const { rehypePlugins } = require('./lib/rehype-plugins');
-const withFonts = require('next-fonts');
+  enabled: process.env.ANALYZE === 'true'
+})
+const path = require('path')
+const { remarkPlugins } = require('./lib/remark-plugins')
+const { rehypePlugins } = require('./lib/rehype-plugins')
+const withFonts = require('next-fonts')
 
 function redirects() {
   return [
@@ -13,23 +13,23 @@ function redirects() {
     //   destination: '/:slug*',
     //   permanent: true,
     // },
-  ];
+  ]
 }
 
 module.exports = withFonts(
   withBundleAnalyzer({
     i18n: {
       locales: ['en-US'],
-      defaultLocale: 'en-US',
+      defaultLocale: 'en-US'
     },
     experimental: {
       modern: true,
       polyfillsOptimization: true,
       jsconfigPaths: true,
-      trailingSlash: true,
+      trailingSlash: true
     },
     env: {
-      FATHOM_ID: 'FOEMPXUV',
+      FATHOM_ID: 'FOEMPXUV'
     },
     redirects,
     pageExtensions: ['js', 'ts', 'tsx', 'md', 'mdx'],
@@ -42,18 +42,18 @@ module.exports = withFonts(
             loader: '@mdx-js/loader',
             options: {
               remarkPlugins,
-              rehypePlugins,
-            },
+              rehypePlugins
+            }
           },
-          path.join(__dirname, './lib/mdx-frontmatter-loader'),
-        ],
-      });
+          path.join(__dirname, './lib/mdx-frontmatter-loader')
+        ]
+      })
 
       config.module.rules.push({
         test: /\.ya?ml$/,
         type: 'json',
-        use: 'yaml-loader',
-      });
+        use: 'yaml-loader'
+      })
 
       // if (!options.dev) {
       //   const splitChunks = config.optimization && config.optimization.splitChunks;
@@ -85,7 +85,7 @@ module.exports = withFonts(
       //   './node_modules/@emotion/react'
       // );
 
-      return config;
-    },
+      return config
+    }
   })
-);
+)

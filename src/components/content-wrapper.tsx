@@ -1,6 +1,6 @@
-import React from 'react';
-import { Flex, FlexProps, space } from '@stacks/ui';
-import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core';
+import React from 'react'
+import { Flex, FlexProps, space } from '@stacks/ui'
+import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core'
 
 const ContentWrapper: ForwardRefExoticComponentWithAs<FlexProps, 'div'> = forwardRefWithAs<
   FlexProps,
@@ -14,6 +14,6 @@ const ContentWrapper: ForwardRefExoticComponentWithAs<FlexProps, 'div'> = forwar
     ref={ref}
     {...props}
   />
-));
+))
 
-export { ContentWrapper };
+export { ContentWrapper }

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { jsx, css, Global } from '@emotion/react';
-import { theme, generateCssVariables } from '@stacks/ui';
+import * as React from 'react'
+import { jsx, css, Global } from '@emotion/react'
+import { theme, generateCssVariables } from '@stacks/ui'
 
 export const Base = (
   <Global
@@ -47,6 +47,6 @@ export const Base = (
       }
     `}
   />
-);
+)
 
-export const ColorModes = Base;
+export const ColorModes = Base

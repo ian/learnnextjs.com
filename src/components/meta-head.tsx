@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import Head from 'next/head';
-import { useFaviconName } from '@common/hooks/use-favicon';
+import Head from 'next/head'
+import { useFaviconName } from '@common/hooks/use-favicon'
 
 export const MetaLabels = ({ labels }: any) => {
   return labels?.length ? (
@@ -21,11 +21,11 @@ export const MetaLabels = ({ labels }: any) => {
         </React.Fragment>
       ))}
     </Head>
-  ) : null;
-};
+  ) : null
+}
 
 export const Meta: React.FC<any> = () => {
-  const filename = useFaviconName();
+  const filename = useFaviconName()
   return (
     <Head>
       <link rel="icon" type="image/svg+xml" href={`/${filename}`} />
@@ -36,5 +36,5 @@ export const Meta: React.FC<any> = () => {
       <meta name="twitter:site" content="@blockstack" />
       <meta name="twitter:creator" content="@blockstack" />
     </Head>
-  );
-};
+  )
+}

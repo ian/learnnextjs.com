@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, BoxProps } from '@stacks/ui';
+import React from 'react'
+import { Box, BoxProps } from '@stacks/ui'
 
 export const Section: React.FC<BoxProps> = React.memo(
   React.forwardRef(({ children, ...rest }, ref) => {
@@ -7,6 +7,6 @@ export const Section: React.FC<BoxProps> = React.memo(
       <Box ref={ref as any} as="section" {...rest}>
         {children}
       </Box>
-    );
+    )
   })
-);
+)

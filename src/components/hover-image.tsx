@@ -1,7 +1,7 @@
-import React from 'react';
-import { Box, BoxProps, Grid, space } from '@stacks/ui';
-import { transition } from '@common/utils';
-import { Img } from '@components/mdx/image';
+import React from 'react'
+import { Box, BoxProps, Grid, space } from '@stacks/ui'
+import { transition } from '@common/utils'
+import { Img } from '@components/mdx/image'
 
 const Image = ({
   src,
@@ -12,12 +12,11 @@ const Image = ({
   <Box
     flexShrink={0}
     style={{
-      willChange: 'transform',
+      willChange: 'transform'
     }}
     width="100%"
     size={size}
-    {...rest}
-  >
+    {...rest}>
     <Img
       flexShrink={0}
       borderRadius="12px"
@@ -29,7 +28,7 @@ const Image = ({
       my="0 !important"
     />
   </Box>
-);
+)
 export const HoverImage: React.FC<BoxProps & { isHovered?: boolean; src?: string }> = React.memo(
   ({ isHovered, src, ...props }) => (
     <Box
@@ -38,8 +37,7 @@ export const HoverImage: React.FC<BoxProps & { isHovered?: boolean; src?: string
       borderRadius="12px"
       mb={space('loose')}
       overflow="hidden"
-      {...props}
-    >
+      {...props}>
       <Grid style={{ placeItems: 'center' }} height="0px" paddingTop="56.25%">
         <Image
           width="102%"
@@ -55,4 +53,4 @@ export const HoverImage: React.FC<BoxProps & { isHovered?: boolean; src?: string
       </Grid>
     </Box>
   )
-);
+)

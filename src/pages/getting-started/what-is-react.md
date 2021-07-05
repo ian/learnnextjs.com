@@ -1,6 +1,6 @@
 ---
 title: What is React.js?
-description: 
+description:
 ---
 
 ## What is React.js?

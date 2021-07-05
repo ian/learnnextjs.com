@@ -1,10 +1,10 @@
-import React from 'react';
-import { Box, Flex, space } from '@stacks/ui';
-import { Pagination } from '@components/pagination';
-import { Section, SectionWrapper } from '@components/common';
-import { FeedbackSection } from '@components/feedback';
-import { VercelLogo } from '@components/vercel';
-import { Caption } from '@components/typography';
+import React from 'react'
+import { Box, Flex, space } from '@stacks/ui'
+import { Pagination } from '@components/pagination'
+import { Section, SectionWrapper } from '@components/common'
+import { FeedbackSection } from '@components/feedback'
+import { VercelLogo } from '@components/vercel'
+import { Caption } from '@components/typography'
 
 const Footer = ({ hidePagination, ...rest }: any) => {
   return (
@@ -15,8 +15,7 @@ const Footer = ({ hidePagination, ...rest }: any) => {
         <Flex
           justifyContent={['flex-end', 'flex-end', 'flex-start']}
           mt={['extra-loose', 'extra-loose', 'loose']}
-          alignItems="center"
-        >
+          alignItems="center">
           <Caption mt={['loose', 'loose', 'unset']} mr="tight">
             Powered by
           </Caption>
@@ -25,14 +24,13 @@ const Footer = ({ hidePagination, ...rest }: any) => {
             href="https://vercel.com/?utm_source=blockstack&utm_campaign=oss"
             as="a"
             target="_blank"
-            rel="noopener noreferrer"
-          >
+            rel="noopener noreferrer">
             <VercelLogo opacity={0.85} />
           </Box>
         </Flex>
       </SectionWrapper>
     </Section>
-  );
-};
+  )
+}
 
-export { Footer };
+export { Footer }

@@ -1,18 +1,18 @@
-import React from 'react';
-import { Flex, Box, color, space, BoxProps } from '@stacks/ui';
-import Link from 'next/link';
-import { useAppState } from '@common/hooks/use-app-state';
-import { SIDEBAR_WIDTH } from '@common/constants';
+import React from 'react'
+import { Flex, Box, color, space, BoxProps } from '@stacks/ui'
+import Link from 'next/link'
+import { useAppState } from '@common/hooks/use-app-state'
+import { SIDEBAR_WIDTH } from '@common/constants'
 // @ts-ignore
-import nav from '@common/navigation.yaml';
-import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon';
-import { getCategory, getTitle, slugify } from '@common/utils';
-import { useRouter } from 'next/router';
-import { getCapsizeStyles } from '@components/mdx/typography';
-import { Text } from '@components/typography';
-import { css } from '@stacks/ui-core';
-import { SmartLink } from '@components/mdx';
-import { useMobileMenuState } from '@common/hooks/use-mobile-menu';
+import nav from '@common/navigation.yaml'
+import ArrowLeftIcon from 'mdi-react/ArrowLeftIcon'
+import { getCategory, getTitle, slugify } from '@common/utils'
+import { useRouter } from 'next/router'
+import { getCapsizeStyles } from '@components/mdx/typography'
+import { Text } from '@components/typography'
+import { css } from '@stacks/ui-core'
+import { SmartLink } from '@components/mdx'
+import { useMobileMenuState } from '@common/hooks/use-mobile-menu'
 
 const Wrapper: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
   width = `${SIDEBAR_WIDTH}px`,
@@ -29,21 +29,20 @@ const Wrapper: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
         overflow="auto"
         top={0}
         pt={space('extra-loose')}
-        {...containerProps}
-      >
+        {...containerProps}>
         {children}
       </Box>
     </Box>
-  );
-};
+  )
+}
 
-const capitalize = s => {
-  if (typeof s !== 'string') return '';
-  return s.charAt(0).toUpperCase() + s.slice(1);
-};
+const capitalize = (s) => {
+  if (typeof s !== 'string') return ''
+  return s.charAt(0).toUpperCase() + s.slice(1)
+}
 
 const convertToTitle = (path: string) =>
-  !path ? null : path === '/' ? 'Home' : capitalize(path.replace('/', '').replace(/-/g, ' '));
+  !path ? null : path === '/' ? 'Home' : capitalize(path.replace('/', '').replace(/-/g, ' '))
 
 const PageItem = React.forwardRef(
   (
@@ -57,13 +56,13 @@ const PageItem = React.forwardRef(
     }: any,
     ref: any
   ) => {
-    const typeStyles = isTopLevel ? getCapsizeStyles(16, 26) : getCapsizeStyles(14, 20);
+    const typeStyles = isTopLevel ? getCapsizeStyles(16, 26) : getCapsizeStyles(14, 20)
     const styleProps = {
       outline: '0',
       display: 'block',
       color: isActive ? color('accent') : isTopLevel ? color('text-title') : _color,
-      mb: isTopLevel ? space('base-loose') : mb,
-    };
+      mb: isTopLevel ? space('base-loose') : mb
+    }
     return (
       <SmartLink
         ref={ref}
@@ -71,13 +70,12 @@ const PageItem = React.forwardRef(
         _hover={{ color: isTopLevel ? color('accent') : color('text-title') }}
         _focus={{ color: color('accent') }}
         {...typeStyles}
-        {...props}
-      >
+        {...props}>
         {children}
       </SmartLink>
-    );
+    )
   }
-);
+)
 
 const SectionTitle: React.FC<BoxProps> = ({ children, ...rest }) => (
   <Text
@@ -85,18 +83,17 @@ const SectionTitle: React.FC<BoxProps> = ({ children, ...rest }) => (
       display: 'block',
       ...getCapsizeStyles(16, 26),
       color: color('text-title'),
-      ...rest,
-    }}
-  >
+      ...rest
+    }}>
     {children}
   </Text>
-);
+)
 
-const getRoutePath = (path, routes) => routes.find(route => route.path.endsWith(path));
+const getRoutePath = (path, routes) => routes.find((route) => route.path.endsWith(path))
 
 const ChildPages = ({ items, handleClick }: any) => {
-  const { routes } = useAppState();
-  const { handleClose } = useMobileMenuState();
+  const { routes } = useAppState()
+  const { handleClose } = useMobileMenuState()
 
   return items?.pages
     ? items?.pages?.map((page, key) => {
@@ -107,23 +104,22 @@ const ChildPages = ({ items, handleClick }: any) => {
                 as="a"
                 href={page.external.href}
                 onClick={() => handleClose()}
-                target="_blank"
-              >
+                target="_blank">
                 {page.external.title}
               </PageItem>
             </Box>
-          );
+          )
         }
 
         const path = page.pages
           ? `${page.path}${page.pages[0].path}`
           : items.path
           ? `/${slugify(items.path)}${page.path}`
-          : page.path;
+          : page.path
 
-        const router = useRouter();
-        const routePath = routes.find(route => route.path.endsWith(path));
-        const route = getRoutePath(path, routes);
+        const router = useRouter()
+        const routePath = routes.find((route) => route.path.endsWith(path))
+        const route = getRoutePath(path, routes)
 
         return (
           <Box mb={space('extra-tight')} key={key}>
@@ -133,21 +129,20 @@ const ChildPages = ({ items, handleClick }: any) => {
                 onClick={
                   page.pages
                     ? () => {
-                        handleClick(page);
-                        handleClose();
+                        handleClick(page)
+                        handleClose()
                       }
                     : handleClose
                 }
-                as="a"
-              >
+                as="a">
                 {items.usePageTitles ? getTitle(route) : convertToTitle(page.path)}
               </PageItem>
             </Link>
           </Box>
-        );
+        )
       })
-    : null;
-};
+    : null
+}
 
 const ChildSection: React.FC<BoxProps & { sections?: any }> = ({ sections, ...rest }) =>
   sections?.map((section, key) => {
@@ -158,25 +153,23 @@ const ChildSection: React.FC<BoxProps & { sections?: any }> = ({ sections, ...re
           textTransform="uppercase"
           fontSize="12px"
           fontWeight={500}
-          mb={space('base-loose')}
-        >
+          mb={space('base-loose')}>
           {section.title}
         </SectionTitle>
         <ChildPages items={section} />
       </Box>
-    );
-  });
+    )
+  })
 
-const BackItem = props => (
+const BackItem = (props) => (
   <Flex
     color={color('text-caption')}
     _hover={{
       cursor: 'pointer',
-      color: color('text-title'),
+      color: color('text-title')
     }}
     alignItems="center"
-    {...props}
-  >
+    {...props}>
     <Box mr={space('extra-tight')}>
       <ArrowLeftIcon size="16px" />
     </Box>
@@ -184,75 +177,75 @@ const BackItem = props => (
       Back
     </PageItem>
   </Flex>
-);
+)
 
 const Navigation = () => {
-  const { routes } = useAppState();
+  const { routes } = useAppState()
   const [selected, setSelected] = React.useState<any | undefined>({
     type: 'default',
     items: nav.sections,
-    selected: undefined,
-  });
-  const { handleClose } = useMobileMenuState();
+    selected: undefined
+  })
+  const { handleClose } = useMobileMenuState()
 
-  const router = useRouter();
+  const router = useRouter()
 
   React.useEffect(() => {
-    let currentSection;
+    let currentSection
 
     if (router.pathname === '/') {
       currentSection = {
         items: nav.sections,
-        type: 'default',
-      };
+        type: 'default'
+      }
     } else {
-      nav.sections.forEach(section => {
-        section.pages.forEach(page => {
+      nav.sections.forEach((section) => {
+        section.pages.forEach((page) => {
           if (page.pages) {
-            const pagesFound = page.pages.find(_page => {
-              return router.pathname.endsWith(`${page.path}${_page.path}`);
-            });
-            const sectionsFound = page?.sections?.find(_section => {
-              return _section.pages.find(_page => {
-                return router.pathname.endsWith(`${page.path}${_page.path}`);
-              });
-            });
+            const pagesFound = page.pages.find((_page) => {
+              return router.pathname.endsWith(`${page.path}${_page.path}`)
+            })
+            const sectionsFound = page?.sections?.find((_section) => {
+              return _section.pages.find((_page) => {
+                return router.pathname.endsWith(`${page.path}${_page.path}`)
+              })
+            })
             if (pagesFound || sectionsFound) {
               currentSection = {
                 type: 'page',
-                items: page,
-              };
+                items: page
+              }
             }
           } else if (!currentSection && router.pathname.endsWith(page.path)) {
             currentSection = {
               items: nav.sections,
-              type: 'default',
-            };
+              type: 'default'
+            }
           }
-        });
-      });
+        })
+      })
     }
 
     if (currentSection?.items && selected.items !== currentSection.items) {
-      setSelected(currentSection);
+      setSelected(currentSection)
     }
-  }, [router.pathname]);
+  }, [router.pathname])
 
   const handleClick = (page: any) => {
     if (page.pages) {
       setSelected({
         type: 'page',
-        items: page,
-      });
+        items: page
+      })
     }
-    handleClose();
-  };
+    handleClose()
+  }
 
   const handleBack = () =>
     setSelected({
       type: 'default',
-      items: nav.sections,
-    });
+      items: nav.sections
+    })
 
   if (selected.type === 'page') {
     return (
@@ -266,19 +259,19 @@ const Navigation = () => {
           {selected.items?.sections ? (
             <ChildSection
               mt={space('extra-loose')}
-              sections={selected.items?.sections?.map(section => ({
+              sections={selected.items?.sections?.map((section) => ({
                 ...section,
-                path: selected.items.path,
+                path: selected.items.path
               }))}
             />
           ) : null}
         </Box>
       </Box>
-    );
+    )
   }
 
   if (selected.type === 'default') {
-    const urlCategory = getCategory(router.pathname);
+    const urlCategory = getCategory(router.pathname)
     return selected.items.map((section, i) => {
       return (
         <Box mb="40px" key={i}>
@@ -292,9 +285,9 @@ const Navigation = () => {
               ? `${page.path}${page.pages[0].path}`
               : section?.title
               ? `/${slugify(section?.title)}${page.path}`
-              : page.path;
+              : page.path
 
-            const route = getRoutePath(path, routes);
+            const route = getRoutePath(path, routes)
 
             return (
               <Box mb={space('extra-tight')} key={`${i}-${key}`}>
@@ -302,20 +295,19 @@ const Navigation = () => {
                   href={!urlCategory ? path : !path.includes(urlCategory) && path}
                   isTopLevel={i === 0}
                   isActive={router.pathname.endsWith(path)}
-                  onClick={() => handleClick(page)}
-                >
+                  onClick={() => handleClick(page)}>
                   {section.usePageTitles ? getTitle(route) : convertToTitle(page.path)}
                 </PageItem>
               </Box>
-            );
+            )
           })}
         </Box>
-      );
-    });
+      )
+    })
   }
 
-  return null;
-};
+  return null
+}
 
 export const SideNav: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
   containerProps,
@@ -325,5 +317,5 @@ export const SideNav: React.FC<BoxProps & { containerProps?: BoxProps }> = ({
     <Wrapper containerProps={containerProps} {...rest}>
       <Navigation />
     </Wrapper>
-  );
-};
+  )
+}

@@ -1,13 +1,13 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef } from 'react'
 
-import { Box, BoxProps } from '@stacks/ui';
-import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core';
+import { Box, BoxProps } from '@stacks/ui'
+import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core'
 
 export const StacksDocsLogo: ForwardRefExoticComponentWithAs<BoxProps, 'svg'> = forwardRefWithAs<
   BoxProps,
   'svg'
 >((props, ref) => {
-  const { width = '156px', color = 'white', as = 'svg', ...rest } = props;
+  const { width = '156px', color = 'white', as = 'svg', ...rest } = props
   return (
     <Box
       display="block"
@@ -18,8 +18,7 @@ export const StacksDocsLogo: ForwardRefExoticComponentWithAs<BoxProps, 'svg'> = 
       fill="none"
       ref={ref}
       color={color}
-      {...rest}
-    >
+      {...rest}>
       <path
         d="M278.086 271.369L363.056 400H299.58L199.832 248.866L100.084 400H36.9437L121.914 271.704H0V223.006H400V271.369H278.086Z"
         fill="currentColor"
@@ -69,5 +68,5 @@ export const StacksDocsLogo: ForwardRefExoticComponentWithAs<BoxProps, 'svg'> = 
         fill="#9A9A9A"
       />
     </Box>
-  );
-});
+  )
+})

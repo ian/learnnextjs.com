@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Box,
   Grid,
@@ -8,8 +8,8 @@ import {
   space,
   GridProps,
   color,
-  FlexProps,
-} from '@stacks/ui';
+  FlexProps
+} from '@stacks/ui'
 
 export const CircleIcon: React.FC<
   FlexProps & { icon: React.FC<any>; hover?: boolean; dark?: boolean }
@@ -21,19 +21,18 @@ export const CircleIcon: React.FC<
     borderRadius={size}
     bg={color(hover ? 'accent' : 'bg-alt')}
     transition={transition}
-    {...rest}
-  >
+    {...rest}>
     <Box size="34px" color={color(hover ? 'bg' : 'invert')}>
       <Icon transition={transition} />
     </Box>
   </Flex>
-);
+)
 
-export const Section: React.FC<GridProps> = props => (
+export const Section: React.FC<GridProps> = (props) => (
   <Grid style={{ placeItems: 'center' }} py="64px" position="relative" width="100%" {...props} />
-);
+)
 
-export const SectionWrapper: React.FC<BoxProps> = props => (
+export const SectionWrapper: React.FC<BoxProps> = (props) => (
   <Box
     mx="auto"
     zIndex={99}
@@ -43,4 +42,4 @@ export const SectionWrapper: React.FC<BoxProps> = props => (
     pt={space('extra-loose')}
     {...props}
   />
-);
+)

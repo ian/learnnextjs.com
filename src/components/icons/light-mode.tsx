@@ -1,5 +1,5 @@
-import React from 'react';
-import { Box, BoxProps } from '@stacks/ui';
+import React from 'react'
+import { Box, BoxProps } from '@stacks/ui'
 
 export const LightModeIcon = (props: BoxProps) => (
   <Box {...props}>
@@ -10,4 +10,4 @@ export const LightModeIcon = (props: BoxProps) => (
       />
     </svg>
   </Box>
-);
+)

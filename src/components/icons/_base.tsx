@@ -1,8 +1,8 @@
-import React from 'react';
-import { Box, BoxProps } from '@stacks/ui';
-export type SvgProps = React.FC<BoxProps>;
+import React from 'react'
+import { Box, BoxProps } from '@stacks/ui'
+export type SvgProps = React.FC<BoxProps>
 
-export const BaseSvg: SvgProps = props => (
+export const BaseSvg: SvgProps = (props) => (
   <Box
     as="svg"
     width="44"
@@ -15,4 +15,4 @@ export const BaseSvg: SvgProps = props => (
     strokeLinejoin="round"
     {...props}
   />
-);
+)

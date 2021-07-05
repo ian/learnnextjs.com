@@ -1,41 +1,41 @@
-import React from 'react';
-import { Box, Grid, color, space, BoxProps } from '@stacks/ui';
-import { slugify } from '@common/utils';
-import { Text } from '@components/typography';
-import { Link } from '@components/mdx';
-import { useActiveHeading } from '@common/hooks/use-active-heading';
-import NextLink from 'next/link';
-import { getHeadingStyles } from '@components/mdx/typography';
+import React from 'react'
+import { Box, Grid, color, space, BoxProps } from '@stacks/ui'
+import { slugify } from '@common/utils'
+import { Text } from '@components/typography'
+import { Link } from '@components/mdx'
+import { useActiveHeading } from '@common/hooks/use-active-heading'
+import NextLink from 'next/link'
+import { getHeadingStyles } from '@components/mdx/typography'
 
 const getLevelPadding = (level: number) => {
   switch (level) {
     case 2:
-      return space('base');
+      return space('base')
     case 3:
-      return space('base-loose');
+      return space('base-loose')
     default:
-      return 0;
+      return 0
   }
-};
+}
 
 const Item = ({
   slug,
   label,
   level,
-  limit,
+  limit
 }: {
-  slug: string;
-  label: string;
-  level: number;
-  limit?: boolean;
+  slug: string
+  label: string
+  level: number
+  limit?: boolean
 }) => {
-  const { isActive: _isActive, slugInView } = useActiveHeading(slug);
-  const isOnScreen = slugInView === slug;
+  const { isActive: _isActive, slugInView } = useActiveHeading(slug)
+  const isOnScreen = slugInView === slug
 
-  const isActive = isOnScreen || _isActive;
+  const isActive = isOnScreen || _isActive
 
-  const adjustedLevel = level - 2;
-  const shouldRender = limit ? adjustedLevel > 0 && adjustedLevel <= 1 : true;
+  const adjustedLevel = level - 2
+  const shouldRender = limit ? adjustedLevel > 0 && adjustedLevel <= 1 : true
   return shouldRender ? (
     <Box pl={getLevelPadding(level - 2)} py={space('extra-tight')}>
       <NextLink href={`#${slug}`} passHref>
@@ -46,16 +46,15 @@ const Item = ({
           textDecoration="none"
           _hover={{
             textDecoration: 'underline',
-            color: color('accent'),
+            color: color('accent')
           }}
-          pointerEvents={isActive ? 'none' : 'unset'}
-        >
+          pointerEvents={isActive ? 'none' : 'unset'}>
           <Box as="span" dangerouslySetInnerHTML={{ __html: label }} />
         </Link>
       </NextLink>
     </Box>
-  ) : null;
-};
+  ) : null
+}
 
 export const TableOfContents = ({
   headings,
@@ -67,13 +66,13 @@ export const TableOfContents = ({
   ...rest
 }: {
   headings?: {
-    content: string;
-    level: number;
-  }[];
-  noLabel?: boolean;
-  label?: string;
-  limit?: boolean;
-  columns?: number | number[];
+    content: string
+    level: number
+  }[]
+  noLabel?: boolean
+  label?: string
+  limit?: boolean
+  columns?: number | number[]
 } & BoxProps) => {
   return (
     <Box position="relative" display={display}>
@@ -83,9 +82,8 @@ export const TableOfContents = ({
             <Text
               {...{
                 ...getHeadingStyles('h6'),
-                fontWeight: 500,
-              }}
-            >
+                fontWeight: 500
+              }}>
               {label}
             </Text>
           </Box>
@@ -94,10 +92,9 @@ export const TableOfContents = ({
           gridColumnGap={space('base-loose')}
           gridTemplateColumns={
             Array.isArray(columns)
-              ? (columns as any).map(value => `repeat(${value}, 1fr)`)
+              ? (columns as any).map((value) => `repeat(${value}, 1fr)`)
               : `repeat(${columns}, 1fr)`
-          }
-        >
+          }>
           {headings?.map((heading, index) => {
             return (
               <Item
@@ -107,10 +104,10 @@ export const TableOfContents = ({
                 label={heading.content}
                 key={index}
               />
-            );
+            )
           })}
         </Grid>
       </Box>
     </Box>
-  );
-};
+  )
+}
