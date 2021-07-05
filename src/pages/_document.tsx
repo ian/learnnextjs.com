@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import Document, {
   DocumentContext,
   DocumentProps,
@@ -7,11 +7,11 @@ import Document, {
   Head,
   Main,
   NextScript
-} from 'next/document'
-import { THEME_STORAGE_KEY } from '@common/constants'
-import { extractCritical } from '@emotion/server'
-import { MdxOverrides } from '@components/mdx/overrides'
-import { ColorModes } from '@components/color-modes/styles'
+} from "next/document"
+import { THEME_STORAGE_KEY } from "@common/constants"
+import { extractCritical } from "@emotion/server"
+import { MdxOverrides } from "@components/mdx/overrides"
+import { ColorModes } from "@components/color-modes/styles"
 
 export default class MyDocument extends Document<DocumentProps> {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -24,7 +24,7 @@ export default class MyDocument extends Document<DocumentProps> {
           {MdxOverrides}
           {ColorModes}
           <style
-            data-emotion-css={styles.ids.join(' ')}
+            data-emotion-css={styles.ids.join(" ")}
             dangerouslySetInnerHTML={{ __html: styles.css }}
           />
         </>

@@ -1,10 +1,10 @@
-import React from 'react'
-import { Box, space } from '@stacks/ui'
-import hydrate from 'next-mdx-remote/hydrate'
-import { Components } from '@components/mdx/mdx-components'
-import { slugify } from '@common/utils'
-import { css, Theme } from '@stacks/ui-core'
-import { TableOfContents } from '@components/toc'
+import React from "react"
+import { Box, space } from "@stacks/ui"
+import hydrate from "next-mdx-remote/hydrate"
+import { Components } from "@components/mdx/mdx-components"
+import { slugify } from "@common/utils"
+import { css, Theme } from "@stacks/ui-core"
+import { TableOfContents } from "@components/toc"
 
 export const Glossary = ({ data }) => {
   return (
@@ -18,21 +18,21 @@ export const Glossary = ({ data }) => {
       />
       {data.map((entry) => (
         <>
-          <Components.h3 pl={space('extra-loose')} id={slugify(entry.term)}>
+          <Components.h3 pl={space("extra-loose")} id={slugify(entry.term)}>
             {entry.term}
           </Components.h3>
 
           <Box
-            {...{ width: '100%', maxWidth: '48ch', pl: space(['none', 'none', 'base-loose']) }}
+            {...{ width: "100%", maxWidth: "48ch", pl: space(["none", "none", "base-loose"]) }}
             css={(theme: Theme) =>
               css({
-                '& p': {
-                  display: 'block',
-                  wordBreak: 'break-word',
-                  hyphens: 'auto'
+                "& p": {
+                  display: "block",
+                  wordBreak: "break-word",
+                  hyphens: "auto"
                 },
                 code: {
-                  wordBreak: 'break-all'
+                  wordBreak: "break-all"
                 }
               })(theme)
             }>

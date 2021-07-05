@@ -1,6 +1,6 @@
-import React from 'react'
-import { AppStateContext } from '@components/app-state/context'
-import { State } from '@components/app-state/types'
+import React from "react"
+import { AppStateContext } from "@components/app-state/context"
+import { State } from "@components/app-state/types"
 
 interface UseAppStateReturn extends State {
   doChangeActiveSlug: (activeSlug: string) => void
@@ -18,9 +18,9 @@ export const useAppState = (): UseAppStateReturn => {
       }))
   }
 
-  const doChangeActiveSlug = setter<string>('activeSlug')
+  const doChangeActiveSlug = setter<string>("activeSlug")
 
-  const doChangeSlugInView = setter<string>('slugInView')
+  const doChangeSlugInView = setter<string>("slugInView")
 
   return {
     ...rest,

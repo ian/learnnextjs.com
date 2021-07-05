@@ -1,5 +1,5 @@
-import React from 'react'
-import { Box, BoxProps } from '@stacks/ui'
+import React from "react"
+import { Box, BoxProps } from "@stacks/ui"
 export type SvgProps = React.FC<BoxProps>
 
 export const BaseSvg: SvgProps = (props) => (

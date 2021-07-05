@@ -1,5 +1,5 @@
 const canUseDOM = !!(
-  typeof window !== 'undefined' &&
+  typeof window !== "undefined" &&
   window.document &&
   window.document.createElement
 )
@@ -24,15 +24,15 @@ function disableHover() {
 }
 
 if (canUseDOM) {
-  document.addEventListener('touchstart', disableHover, {
+  document.addEventListener("touchstart", disableHover, {
     capture: true,
     passive: true
   })
-  document.addEventListener('touchmove', disableHover, {
+  document.addEventListener("touchmove", disableHover, {
     capture: true,
     passive: true
   })
-  document.addEventListener('mousemove', enableHover, {
+  document.addEventListener("mousemove", enableHover, {
     capture: true,
     passive: true
   })

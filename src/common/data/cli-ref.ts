@@ -1,5 +1,5 @@
-import { convertRemoteDataToMDX } from '@common/data/mdx'
-import cliReferenceData from '../../_data/cli-reference.json'
+import { convertRemoteDataToMDX } from "@common/data/mdx"
+import cliReferenceData from "../../_data/cli-reference.json"
 
 export const convertBlockstackCLIUsageToMdx = async () => {
   const transformed = cliReferenceData.map((entry) => {
@@ -7,7 +7,7 @@ export const convertBlockstackCLIUsageToMdx = async () => {
       ...entry
     }
   })
-  const results = await convertRemoteDataToMDX(transformed, 'usage')
+  const results = await convertRemoteDataToMDX(transformed, "usage")
 
   return {
     props: {

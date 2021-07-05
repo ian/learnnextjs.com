@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from "react"
 import {
   Box,
   Flex,
@@ -10,23 +10,23 @@ import {
   BoxProps,
   Grid,
   Stack
-} from '@stacks/ui'
-import { useDocSearchKeyboardEvents } from '@docsearch/react'
-import { Text } from '@components/typography'
-import { SearchIcon } from '@components/icons/search'
-import Router from 'next/router'
-import Link from 'next/link'
-import { getCapsizeStyles } from '@components/mdx/typography'
-import { useAppState } from '@common/hooks/use-app-state'
-import { css, Theme } from '@stacks/ui-core'
+} from "@stacks/ui"
+import { useDocSearchKeyboardEvents } from "@docsearch/react"
+import { Text } from "@components/typography"
+import { SearchIcon } from "@components/icons/search"
+import Router from "next/router"
+import Link from "next/link"
+import { getCapsizeStyles } from "@components/mdx/typography"
+import { useAppState } from "@common/hooks/use-app-state"
+import { css, Theme } from "@stacks/ui-core"
 
 const getLocalUrl = (href) => {
   const _url = new URL(href)
   const url = href
-    .replace(_url.origin, '')
-    .replace('#__next', '')
-    .replace('.html', '')
-    .replace('storage/clidocs', 'core/cmdLineRef')
+    .replace(_url.origin, "")
+    .replace("#__next", "")
+    .replace(".html", "")
+    .replace("storage/clidocs", "core/cmdLineRef")
   return url
 }
 
@@ -49,18 +49,18 @@ const navigator = {
 const Key: React.FC<BoxProps> = React.memo(({ children, ...rest }) => (
   <Grid
     style={{
-      placeItems: 'center'
+      placeItems: "center"
     }}
     size="18px"
-    bg={'rgba(0,0,0,0.11)'}
+    bg={"rgba(0,0,0,0.11)"}
     borderRadius="3px"
     opacity={0.65}
     {...rest}>
     <Text
       {...{
-        color: color('text-body'),
-        display: 'block',
-        transform: 'translateY(1px)',
+        color: color("text-body"),
+        display: "block",
+        transform: "translateY(1px)",
         ...getCapsizeStyles(12, 12)
       }}>
       {children}
@@ -69,8 +69,8 @@ const Key: React.FC<BoxProps> = React.memo(({ children, ...rest }) => (
 ))
 
 const searchOptions = {
-  apiKey: '9040ba6d60f5ecb36eafc26396288875',
-  indexName: 'blockstack',
+  apiKey: "9040ba6d60f5ecb36eafc26396288875",
+  indexName: "blockstack",
   navigator
 }
 
@@ -84,7 +84,7 @@ export const SearchBox: React.FC<BoxProps> = React.memo((props) => {
       return Promise.resolve()
     }
 
-    return Promise.all([import('@docsearch/react/modal')]).then(([{ DocSearchModal: Modal }]) => {
+    return Promise.all([import("@docsearch/react/modal")]).then(([{ DocSearchModal: Modal }]) => {
       DocSearchModal = Modal
     })
   }, [])
@@ -92,8 +92,8 @@ export const SearchBox: React.FC<BoxProps> = React.memo((props) => {
   const onOpen = React.useCallback(
     function onOpen() {
       void importDocSearchModalIfNeeded().then(() => {
-        console.log('reopening')
-        setState((state) => ({ ...state, searchModal: 'open' }))
+        console.log("reopening")
+        setState((state) => ({ ...state, searchModal: "open" }))
       })
     },
     [importDocSearchModalIfNeeded]
@@ -101,17 +101,17 @@ export const SearchBox: React.FC<BoxProps> = React.memo((props) => {
 
   const onClose = React.useCallback(
     function onClose() {
-      setState((state) => ({ ...state, searchModal: 'closed' }))
+      setState((state) => ({ ...state, searchModal: "closed" }))
     },
     [setState]
   )
 
   useEffect(() => {
-    if (searchModal === 'open') onOpen()
+    if (searchModal === "open") onOpen()
   }, [searchModal])
 
   const searchButtonRef = React.useRef(null)
-  const isOpen = Boolean(searchModal === 'open' && DocSearchModal)
+  const isOpen = Boolean(searchModal === "open" && DocSearchModal)
 
   useDocSearchKeyboardEvents({ isOpen, onOpen, onClose, searchButtonRef })
 
@@ -126,8 +126,8 @@ export const SearchBox: React.FC<BoxProps> = React.memo((props) => {
               style={{ ...styles }}
               css={(theme: Theme) =>
                 css({
-                  '.DocSearch.DocSearch-Container': {
-                    position: 'fixed'
+                  ".DocSearch.DocSearch-Container": {
+                    position: "fixed"
                   }
                 })(theme)
               }>
@@ -142,44 +142,44 @@ export const SearchBox: React.FC<BoxProps> = React.memo((props) => {
         </Fade>
       </Portal>
       <Box
-        bg={color('bg-alt')}
+        bg={color("bg-alt")}
         width="100%"
         borderRadius="12px"
-        display={['none', 'none', 'block', 'block']}
+        display={["none", "none", "block", "block"]}
         border="1px solid"
-        borderColor={isOpen ? 'rgba(170, 179, 255, 0.8)' : color('border')}
+        borderColor={isOpen ? "rgba(170, 179, 255, 0.8)" : color("border")}
         boxShadow={
-          isOpen ? '0 0 0 3px rgba(170, 179, 255, 0.25)' : '0 0 0 3px rgba(170, 179, 255, 0)'
+          isOpen ? "0 0 0 3px rgba(170, 179, 255, 0.25)" : "0 0 0 3px rgba(170, 179, 255, 0)"
         }
         transition="border-color 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s cubic-bezier(0.23, 1, 0.32, 1)"
         _hover={{
-          borderColor: 'rgba(170, 179, 255, 0.8)',
-          boxShadow: '0 0 0 3px rgba(170, 179, 255, 0.25)',
-          cursor: 'pointer'
+          borderColor: "rgba(170, 179, 255, 0.8)",
+          boxShadow: "0 0 0 3px rgba(170, 179, 255, 0.25)",
+          cursor: "pointer"
         }}
         style={{
-          userSelect: 'none'
+          userSelect: "none"
         }}
         {...props}>
         <Flex alignItems="center" justifyContent="space-between">
           <Flex
             ref={searchButtonRef}
             onClick={onOpen}
-            px={space('base-tight')}
-            py={space('tight')}
+            px={space("base-tight")}
+            py={space("tight")}
             alignItems="center"
-            _hover={{ borderColor: themeColor('blue.400') }}>
+            _hover={{ borderColor: themeColor("blue.400") }}>
             <Box
               transform="scaleX(-1)"
-              mr={space('tight')}
+              mr={space("tight")}
               opacity={0.6}
-              color={color('text-caption')}>
+              color={color("text-caption")}>
               <SearchIcon size="18px" />
             </Box>
             <Text
               opacity={0.8}
               {...{
-                color: color('text-caption'),
+                color: color("text-caption"),
                 ...getCapsizeStyles(14, 28)
               }}>
               Search docs

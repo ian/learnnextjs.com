@@ -1,4 +1,4 @@
-import capsize from 'capsize'
+import capsize from "capsize"
 
 const fontMetrics = {
   capHeight: 718,
@@ -9,12 +9,12 @@ const fontMetrics = {
 }
 
 export const baseTypeStyles = {
-  letterSpacing: '-0.01em',
-  display: 'flex',
+  letterSpacing: "-0.01em",
+  display: "flex",
   fontFamily: `'Soehne', Inter, sans-serif`
 }
 
-export const getCapsizeStyles = (fontSize, leading, prefix = '_') => {
+export const getCapsizeStyles = (fontSize, leading, prefix = "_") => {
   const styles = capsize({
     fontMetrics,
     fontSize,
@@ -22,8 +22,8 @@ export const getCapsizeStyles = (fontSize, leading, prefix = '_') => {
   })
 
   Object.keys(styles).forEach((prop) => {
-    if (prop.startsWith('::')) {
-      styles[prop.replace('::', prefix)] = styles[prop]
+    if (prop.startsWith("::")) {
+      styles[prop.replace("::", prefix)] = styles[prop]
       delete styles[prop]
     }
   })
@@ -70,7 +70,7 @@ const headings = (as, prefix) => ({
   h6: h6(prefix)
 })
 
-export const getHeadingStyles = (as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6', prefix = '_') => {
+export const getHeadingStyles = (as: "h1" | "h2" | "h3" | "h4" | "h5" | "h6", prefix = "_") => {
   return {
     ...headings(as, prefix)[as]
   }

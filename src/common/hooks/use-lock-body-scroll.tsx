@@ -1,5 +1,5 @@
-import React from 'react'
-import { useSafeLayoutEffect } from '@stacks/ui'
+import React from "react"
+import { useSafeLayoutEffect } from "@stacks/ui"
 
 export const useLockBodyScroll = (lock: boolean) => {
   useSafeLayoutEffect(() => {
@@ -7,8 +7,8 @@ export const useLockBodyScroll = (lock: boolean) => {
     const originalStyle = window.getComputedStyle(document.body).overflow
 
     if (lock) {
-      if (document.body.style.overflow !== 'hidden') {
-        document.body.style.overflow = 'hidden'
+      if (document.body.style.overflow !== "hidden") {
+        document.body.style.overflow = "hidden"
       }
     } else {
       if (document.body.style.overflow !== originalStyle) {

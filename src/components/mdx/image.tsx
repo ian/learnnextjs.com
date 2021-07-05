@@ -1,15 +1,15 @@
-import React from 'react'
-import { Box, BoxProps } from '@stacks/ui'
-import { useRouter } from 'next/router'
-import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core'
+import React from "react"
+import { Box, BoxProps } from "@stacks/ui"
+import { useRouter } from "next/router"
+import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from "@stacks/ui-core"
 
-const imgix = 'https://stacks-documentation.imgix.net'
+const imgix = "https://stacks-documentation.imgix.net"
 
-const params = '?auto=compress,format'
+const params = "?auto=compress,format"
 
 const getUrl = (pathname) => {
-  let url = ''
-  const levels = pathname.split('/')
+  let url = ""
+  const levels = pathname.split("/")
   levels.forEach((level, index) => {
     if (index !== levels.length - 1) {
       url += `${level}/`
@@ -19,7 +19,7 @@ const getUrl = (pathname) => {
 }
 
 const useImgix = (src: string) => {
-  if (process.env.NODE_ENV !== 'production' || process.env.VERCEL_ENV !== 'production' || !src)
+  if (process.env.NODE_ENV !== "production" || process.env.VERCEL_ENV !== "production" || !src)
     return {
       src,
       srcset: undefined
@@ -27,8 +27,8 @@ const useImgix = (src: string) => {
   let _src = src
   let _srcSet = undefined
   const router = useRouter()
-  if (!src?.startsWith('http')) {
-    const path = src.startsWith('/') ? '' : getUrl(router.pathname)
+  if (!src?.startsWith("http")) {
+    const path = src.startsWith("/") ? "" : getUrl(router.pathname)
     _src = `${imgix + path + src + params}`
     _srcSet = `${_src}&w=860&dpr=1&fit=max 1x,
           ${_src}&w=480&fit=max&q=40&dpr=2 2x,
@@ -57,12 +57,12 @@ const getAspectRatio = (dimensions) => {
   return (height / width) * 100
 }
 
-const BaseImg: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwardRefWithAs<BoxProps, 'img'>(
-  ({ as = 'img', style = {}, ...props }, ref) => {
+const BaseImg: ForwardRefExoticComponentWithAs<BoxProps, "img"> = forwardRefWithAs<BoxProps, "img">(
+  ({ as = "img", style = {}, ...props }, ref) => {
     return (
       <Box
         maxWidth="100%"
-        width={['100%', '100%', 'inherit', 'inherit']}
+        width={["100%", "100%", "inherit", "inherit"]}
         display="block"
         as={as}
         loading="lazy"
@@ -79,7 +79,7 @@ const BaseImg: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwardRefWith
 
 export const Img: ForwardRefExoticComponentWithAs<
   BoxProps & { loading?: string; dimensions?: any },
-  'img'
+  "img"
 > = React.memo(({ src: _src, dimensions, ...rest }) => {
   const { src, srcset } = useImgix(_src)
 
@@ -95,7 +95,7 @@ export const Img: ForwardRefExoticComponentWithAs<
     // (because of the built in lazy-loading)
     const aspectRatio = getAspectRatio(dimensions)
 
-    const width = dimensions.width <= 720 ? `${dimensions.width}px` : '100%'
+    const width = dimensions.width <= 720 ? `${dimensions.width}px` : "100%"
     return (
       <Box width={width} maxWidth="100%" padding="0 !important" position="relative" className="img">
         <Box height="0" paddingBottom={`${aspectRatio}%`} width="100%" />

@@ -4,5 +4,5 @@ export interface State {
   slugInView?: string
   setState: (value: any) => void
   routes: any
-  searchModal: 'open' | 'closed'
+  searchModal: "open" | "closed"
 }

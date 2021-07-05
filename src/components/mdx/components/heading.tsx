@@ -1,27 +1,27 @@
-import { Box, Flex, FlexProps, BoxProps, color, useClipboard, space } from '@stacks/ui'
+import { Box, Flex, FlexProps, BoxProps, color, useClipboard, space } from "@stacks/ui"
 
-import React from 'react'
-import LinkIcon from 'mdi-react/LinkVariantIcon'
-import HashtagIcon from 'mdi-react/HashtagIcon'
-import { useTouchable } from '@common/hooks/use-touchable'
-import { Tooltip } from '@components/tooltip'
-import { useActiveHeading } from '@common/hooks/use-active-heading'
-import { Title } from '@components/typography'
-import { getHeadingStyles, baseTypeStyles } from '@components/mdx/typography'
-import { useRouter } from 'next/router'
-import { Link } from '@components/mdx/components/link'
-import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core'
+import React from "react"
+import LinkIcon from "mdi-react/LinkVariantIcon"
+import HashtagIcon from "mdi-react/HashtagIcon"
+import { useTouchable } from "@common/hooks/use-touchable"
+import { Tooltip } from "@components/tooltip"
+import { useActiveHeading } from "@common/hooks/use-active-heading"
+import { Title } from "@components/typography"
+import { getHeadingStyles, baseTypeStyles } from "@components/mdx/typography"
+import { useRouter } from "next/router"
+import { Link } from "@components/mdx/components/link"
+import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from "@stacks/ui-core"
 
 const LinkButton = React.memo(({ link, onClick, ...rest }: BoxProps & { link: string }) => {
   const url =
-    typeof document !== 'undefined' && document.location.origin + document.location.pathname + link
+    typeof document !== "undefined" && document.location.origin + document.location.pathname + link
 
   const { hasCopied, onCopy } = useClipboard(url)
-  const label = hasCopied ? 'Copied!' : 'Copy url'
+  const label = hasCopied ? "Copied!" : "Copy url"
   return (
     <Box
       as="span"
-      display={['none', 'none', 'block', 'block']}
+      display={["none", "none", "block", "block"]}
       onClick={(e) => {
         onClick && onClick(e)
         onCopy?.()
@@ -34,11 +34,11 @@ const LinkButton = React.memo(({ link, onClick, ...rest }: BoxProps & { link: st
           _hover={{
             opacity: 1
           }}
-          color={color('text-title')}
+          color={color("text-title")}
           as="a"
           href={link}
           display="block"
-          ml={space('tight')}>
+          ml={space("tight")}>
           <LinkIcon size="1rem" />
         </Link>
       </Tooltip>
@@ -53,7 +53,7 @@ const AnchorOffset: React.FC<BoxProps & { id?: string }> = ({ id }) =>
       as="span"
       display="block"
       position="absolute"
-      style={{ userSelect: 'none', pointerEvents: 'none' }}
+      style={{ userSelect: "none", pointerEvents: "none" }}
       top={`-64px`}
       id={id}
     />
@@ -65,16 +65,16 @@ const Hashtag = () => (
     as="span"
     alignItems="center"
     size="20px"
-    left={['12px', '12px', '-20px', '-20px']}
-    color={color('text-caption')}>
+    left={["12px", "12px", "-20px", "-20px"]}
+    color={color("text-caption")}>
     <HashtagIcon size="1rem" />
   </Flex>
 )
 
 export const Heading: ForwardRefExoticComponentWithAs<
   FlexProps,
-  'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-> = forwardRefWithAs<FlexProps, 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>(
+  "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+> = forwardRefWithAs<FlexProps, "h1" | "h2" | "h3" | "h4" | "h5" | "h6">(
   ({ as, children, id, ...rest }, ref) => {
     const { isActive, doChangeActiveSlug } = useActiveHeading(id)
 
@@ -98,12 +98,12 @@ export const Heading: ForwardRefExoticComponentWithAs<
         {...{
           ...baseTypeStyles,
           ...styles,
-          color: isActive ? color('accent') : (color('text-title') as any),
-          alignItems: 'center',
-          position: 'relative',
-          display: 'flex',
-          justifyContent: 'flex-start',
-          cursor: id && hover ? 'pointer' : 'unset'
+          color: isActive ? color("accent") : (color("text-title") as any),
+          alignItems: "center",
+          position: "relative",
+          display: "flex",
+          justifyContent: "flex-start",
+          cursor: id && hover ? "pointer" : "unset"
         }}
         ref={ref}
         {...rest}>
@@ -117,5 +117,5 @@ export const Heading: ForwardRefExoticComponentWithAs<
 )
 
 export const BaseHeading: React.FC<BoxProps> = React.memo(({ ...props }) => (
-  <Heading width="100%" mt={space('base-loose')} {...(props as any)} />
+  <Heading width="100%" mt={space("base-loose")} {...(props as any)} />
 ))

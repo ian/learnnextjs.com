@@ -1,21 +1,21 @@
-import React from 'react'
-import cliReferenceData from '../_data/cli-reference.json'
-import { Components } from '@components/mdx/mdx-components'
-import { Grid, Box, color } from '@stacks/ui'
-import { border, onlyText, slugify } from '@common/utils'
-import hydrate from 'next-mdx-remote/hydrate'
+import React from "react"
+import cliReferenceData from "../_data/cli-reference.json"
+import { Components } from "@components/mdx/mdx-components"
+import { Grid, Box, color } from "@stacks/ui"
+import { border, onlyText, slugify } from "@common/utils"
+import hydrate from "next-mdx-remote/hydrate"
 
 const styles = {
-  maxWidth: '100%',
-  overflowX: 'auto',
-  overflowY: 'hidden',
-  whiteSpace: 'pre',
-  display: 'inline-block'
+  maxWidth: "100%",
+  overflowX: "auto",
+  overflowY: "hidden",
+  whiteSpace: "pre",
+  display: "inline-block"
 }
 const cleanTheChildren = (children: any) => {
   const text = onlyText(children).trim()
-  if (text.startsWith('$')) {
-    return text.replace('$', '')
+  if (text.startsWith("$")) {
+    return text.replace("$", "")
   }
   return text
 }
@@ -39,7 +39,7 @@ const ReferenceEntry = ({ entry, usage }) => (
         p: (props: any) => (
           <Components.p
             {...props}
-            style={{ display: 'block', wordBreak: 'break-word', hyphens: 'auto' }}
+            style={{ display: "block", wordBreak: "break-word", hyphens: "auto" }}
           />
         )
       }
@@ -51,7 +51,7 @@ const ReferenceEntry = ({ entry, usage }) => (
       borderBottom={border()}
       gridGap="base"
       gridTemplateColumns="repeat(4, minmax(0,25%))"
-      color={color('text-caption')}>
+      color={color("text-caption")}>
       <Box fontSize="14px" fontWeight="bold">
         Name
       </Box>
@@ -75,7 +75,7 @@ const ReferenceEntry = ({ entry, usage }) => (
           gridGap="base"
           gridTemplateColumns="repeat(4, minmax(0,25%))"
           key={index}
-          color={color('text-body')}>
+          color={color("text-body")}>
           <Box>
             <InlineCode>${name}</InlineCode>
           </Box>

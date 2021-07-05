@@ -1,15 +1,15 @@
-import React from 'react'
-import { Box, BoxProps, Flex, Grid, color, space, transition } from '@stacks/ui'
-import { useAppState } from '@common/hooks/use-app-state'
-import { useRouter } from 'next/router'
-import { border, getTitle } from '@common/utils'
-import NextLink from 'next/link'
-import { Caption, Text, Link } from '@components/typography'
-import { useTouchable } from '@common/hooks/use-touchable'
-import { getHeadingStyles } from '@components/mdx/typography'
-import { css } from '@stacks/ui-core'
-import { ArrowRightIcon } from '@components/icons/arrow-right'
-import { ArrowLeftIcon } from '@components/icons/arrow-left'
+import React from "react"
+import { Box, BoxProps, Flex, Grid, color, space, transition } from "@stacks/ui"
+import { useAppState } from "@common/hooks/use-app-state"
+import { useRouter } from "next/router"
+import { border, getTitle } from "@common/utils"
+import NextLink from "next/link"
+import { Caption, Text, Link } from "@components/typography"
+import { useTouchable } from "@common/hooks/use-touchable"
+import { getHeadingStyles } from "@components/mdx/typography"
+import { css } from "@stacks/ui-core"
+import { ArrowRightIcon } from "@components/icons/arrow-right"
+import { ArrowLeftIcon } from "@components/icons/arrow-left"
 
 const FloatingLink: React.FC<any> = ({ href }) => (
   <NextLink href={`${href}`} passHref>
@@ -18,7 +18,7 @@ const FloatingLink: React.FC<any> = ({ href }) => (
 )
 
 const getCategory = (pathname: string) => {
-  const arr = pathname.split('/')
+  const arr = pathname.split("/")
   if (arr.length > 1) {
     return arr[1]
   }
@@ -50,12 +50,12 @@ const usePaginateRoutes = () => {
 }
 
 const Description: React.FC<BoxProps> = (props) => (
-  <Caption display="block" maxWidth="42ch" mt={space('extra-tight')} {...props} />
+  <Caption display="block" maxWidth="42ch" mt={space("extra-tight")} {...props} />
 )
 
 const Card: React.FC<any> = ({ children, ...rest }) => {
   const { bind, active, hover } = useTouchable({
-    behavior: 'button'
+    behavior: "button"
   })
   return (
     <Flex
@@ -64,11 +64,11 @@ const Card: React.FC<any> = ({ children, ...rest }) => {
       position="relative"
       border={border()}
       borderRadius="6px"
-      py={space('base')}
-      px={space('base-loose')}
+      py={space("base")}
+      px={space("base-loose")}
       transition={transition}
       justifyContent="center"
-      bg={color('bg')}
+      bg={color("bg")}
       {...bind}
       {...rest}>
       {children({ hover, active })}
@@ -79,9 +79,9 @@ const Card: React.FC<any> = ({ children, ...rest }) => {
 const Pretitle: React.FC<BoxProps> = (props) => (
   <Text
     display="block"
-    color={color('text-caption')}
+    color={color("text-caption")}
     transition={transition}
-    {...getHeadingStyles('h6')}
+    {...getHeadingStyles("h6")}
     {...props}
   />
 )
@@ -92,9 +92,9 @@ const Title: React.FC<BoxProps & { isHovered?: boolean }> = ({ isHovered, ...pro
     maxWidth="38ch"
     width="100%"
     transition={transition}
-    color={isHovered ? color('accent') : color('text-title')}
-    mb={space('tight')}
-    {...getHeadingStyles('h4')}
+    color={isHovered ? color("accent") : color("text-title")}
+    mb={space("tight")}
+    {...getHeadingStyles("h4")}
     {...props}
   />
 )
@@ -107,15 +107,15 @@ const PrevCard: React.FC<any> = React.memo((props) => {
       {({ hover, active }) => (
         <>
           <FloatingLink href={prev.path} />
-          <Flex position="relative" mb={space('base-tight')} alignItems="center">
+          <Flex position="relative" mb={space("base-tight")} alignItems="center">
             <Pretitle
-              left={hover || active ? '18px' : 0}
-              bg={color('bg')}
+              left={hover || active ? "18px" : 0}
+              bg={color("bg")}
               position="relative"
               zIndex={2}>
               Previous
             </Pretitle>
-            <Box position="absolute" left={0} color={color('text-caption')} pt="2px">
+            <Box position="absolute" left={0} color={color("text-caption")} pt="2px">
               <ArrowLeftIcon size="14px" />
             </Box>
           </Flex>
@@ -135,15 +135,15 @@ const NextCard: React.FC<any> = React.memo((props) => {
       {({ hover, active }) => (
         <>
           <FloatingLink href={next.path} />
-          <Flex position="relative" mb={space('base-tight')} alignItems="center">
+          <Flex position="relative" mb={space("base-tight")} alignItems="center">
             <Pretitle
-              right={hover || active ? '18px' : 0}
-              bg={color('bg')}
+              right={hover || active ? "18px" : 0}
+              bg={color("bg")}
               position="relative"
               zIndex={2}>
               Next
             </Pretitle>
-            <Box position="absolute" right={0} ml="4px" color={color('text-caption')} pt="2px">
+            <Box position="absolute" right={0} ml="4px" color={color("text-caption")} pt="2px">
               <ArrowRightIcon size="14px" />
             </Box>
           </Flex>
@@ -158,9 +158,9 @@ const NextCard: React.FC<any> = React.memo((props) => {
 
 export const Pagination: React.FC<any> = React.memo(({ hidePagination, ...rest }: any) => (
   <Grid
-    gridColumnGap={space('extra-loose')}
-    gridRowGap={space('extra-loose')}
-    gridTemplateColumns={['repeat(1, 1fr)', 'repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(2, 1fr)']}>
+    gridColumnGap={space("extra-loose")}
+    gridRowGap={space("extra-loose")}
+    gridTemplateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(2, 1fr)"]}>
     <PrevCard />
     <NextCard />
   </Grid>

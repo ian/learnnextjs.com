@@ -4,7 +4,7 @@
  *    const { scrollX, scrollY, scrollDirection } = useScroll();7
  * Original Source: https://gist.github.com/joshuacerbito/ea318a6a7ca4336e9fadb9ae5bbb8f4
  */
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react"
 
 type SSRRect = {
   bottom: number
@@ -30,30 +30,30 @@ const EmptySSRRect: SSRRect = {
 export const useScroll = () => {
   const [lastScrollTop, setLastScrollTop] = useState<number>(0)
   const [bodyOffset, setBodyOffset] = useState<DOMRect | SSRRect>(
-    typeof window === 'undefined' || !window.document
+    typeof window === "undefined" || !window.document
       ? EmptySSRRect
       : document.body.getBoundingClientRect()
   )
   const [scrollY, setScrollY] = useState<number>(bodyOffset.top)
   const [scrollX, setScrollX] = useState<number>(bodyOffset.left)
-  const [scrollDirection, setScrollDirection] = useState<'down' | 'up' | undefined>()
+  const [scrollDirection, setScrollDirection] = useState<"down" | "up" | undefined>()
 
   const listener = () => {
     setBodyOffset(
-      typeof window === 'undefined' || !window.document
+      typeof window === "undefined" || !window.document
         ? EmptySSRRect
         : document.body.getBoundingClientRect()
     )
     setScrollY(-bodyOffset.top)
     setScrollX(bodyOffset.left)
-    setScrollDirection(lastScrollTop > -bodyOffset.top ? 'down' : 'up')
+    setScrollDirection(lastScrollTop > -bodyOffset.top ? "down" : "up")
     setLastScrollTop(-bodyOffset.top)
   }
 
   useEffect(() => {
-    window.addEventListener('scroll', listener)
+    window.addEventListener("scroll", listener)
     return () => {
-      window.removeEventListener('scroll', listener)
+      window.removeEventListener("scroll", listener)
     }
   })
 

@@ -1,15 +1,15 @@
-import React from 'react'
-import { Box, Flex, BoxProps, color, Grid, space, StxInline } from '@stacks/ui'
-import { BlockstackLogo } from '@components/icons/blockstack-logo'
-import { StackIcon } from '@components/icons/stack'
-import { SitemapIcon } from '@components/icons/sitemap'
-import { border, onlyText, transition } from '@common/utils'
-import { useTouchable } from '@common/hooks/use-touchable'
-import { Text } from '@components/typography'
-import Link from 'next/link'
-import { useAppState } from '@common/hooks/use-app-state'
-import { Img } from '@components/mdx/image'
-import { getCapsizeStyles, getHeadingStyles } from '@components/mdx/typography'
+import React from "react"
+import { Box, Flex, BoxProps, color, Grid, space, StxInline } from "@stacks/ui"
+import { BlockstackLogo } from "@components/icons/blockstack-logo"
+import { StackIcon } from "@components/icons/stack"
+import { SitemapIcon } from "@components/icons/sitemap"
+import { border, onlyText, transition } from "@common/utils"
+import { useTouchable } from "@common/hooks/use-touchable"
+import { Text } from "@components/typography"
+import Link from "next/link"
+import { useAppState } from "@common/hooks/use-app-state"
+import { Img } from "@components/mdx/image"
+import { getCapsizeStyles, getHeadingStyles } from "@components/mdx/typography"
 
 const Image = ({
   src,
@@ -21,7 +21,7 @@ const Image = ({
   <Box
     flexShrink={0}
     style={{
-      willChange: 'transform'
+      willChange: "transform"
     }}
     width="100%"
     size={size}
@@ -41,7 +41,7 @@ const Image = ({
 )
 
 const Title: React.FC<BoxProps> = ({ children, ...props }) => (
-  <Text {...getHeadingStyles('h3')} {...props}>
+  <Text {...getHeadingStyles("h3")} {...props}>
     {children}
   </Text>
 )
@@ -50,8 +50,8 @@ const Description = ({ children, ...props }) => (
   <Text
     {...props}
     {...getCapsizeStyles(16, 26)}
-    mt={space('base-tight')}
-    color={color('text-body')}>
+    mt={space("base-tight")}
+    color={color("text-body")}>
     {children}
   </Text>
 )
@@ -65,7 +65,7 @@ const FloatingLink = ({ href, contents, ...props }: any) => (
       opacity={0}
       color="transparent"
       style={{
-        userSelect: 'none'
+        userSelect: "none"
       }}
       left={0}
       top={0}>
@@ -75,17 +75,17 @@ const FloatingLink = ({ href, contents, ...props }: any) => (
 )
 const InlineCard = ({ page }) => {
   const { hover, active, bind } = useTouchable({
-    behavior: 'link'
+    behavior: "link"
   })
   return (
     <Flex
       border={border()}
-      flexDirection={['column', 'row', 'row', 'row']}
-      p={space('base-loose')}
+      flexDirection={["column", "row", "row", "row"]}
+      p={space("base-loose")}
       borderRadius="12px"
       alignItems="center"
       transition={transition()}
-      boxShadow={hover ? 'mid' : 'none'}
+      boxShadow={hover ? "mid" : "none"}
       position="relative"
       {...bind}>
       <Box
@@ -94,48 +94,48 @@ const InlineCard = ({ page }) => {
         size="64px"
         overflow="hidden"
         bg="#9985FF"
-        borderRadius={'12px'}>
+        borderRadius={"12px"}>
         <Image
           size="102%"
-          left={'-2%'}
-          top={'-2%'}
+          left={"-2%"}
+          top={"-2%"}
           position="absolute"
-          transition={transition('0.45s')}
-          transform={(hover || active) && 'scale(1.18)'}
-          style={{ willChange: 'transform' }}
+          transition={transition("0.45s")}
+          transform={(hover || active) && "scale(1.18)"}
+          style={{ willChange: "transform" }}
           src={page?.images?.sm}
           alt={`Graphic for: ${page.title || page.headings[0]}`}
         />
       </Box>
       <Flex
         flexDirection="column"
-        ml={space(['none', 'base', 'base', 'base'])}
-        mt={space(['base', 'none', 'none', 'none'])}
-        textAlign={['center', 'left', 'left', 'left']}>
+        ml={space(["none", "base", "base", "base"])}
+        mt={space(["base", "none", "none", "none"])}
+        textAlign={["center", "left", "left", "left"]}>
         <Flex alignItems="baseline">
           <Title
-            width={['100%', 'unset', 'unset', 'unset']}
-            color={hover ? color('accent') : color('text-title')}
-            mb={space('extra-tight')}>
+            width={["100%", "unset", "unset", "unset"]}
+            color={hover ? color("accent") : color("text-title")}
+            mb={space("extra-tight")}>
             {page.title || page.headings[0]}
           </Title>
           {page.tags?.length ? (
             <Flex
-              position={['absolute', 'static', 'static', 'static']}
-              top={space('base-loose')}
-              right={space('base-loose')}>
+              position={["absolute", "static", "static", "static"]}
+              top={space("base-loose")}
+              right={space("base-loose")}>
               {page.tags.map((tag, key) => (
                 <Flex
-                  ml={space('tight')}
+                  ml={space("tight")}
                   borderRadius="18px"
-                  px={space('base-tight')}
+                  px={space("base-tight")}
                   height="20px"
                   alignItems="center"
                   justify="center"
                   fontSize="12px"
-                  bg={color('border')}
+                  bg={color("border")}
                   textTransform="capitalize"
-                  color={color('invert')}
+                  color={color("invert")}
                   transition={transition()}
                   key={key}>
                   {tag}
@@ -160,15 +160,15 @@ const GridCardImage: React.FC<BoxProps & { isHovered?: boolean; src?: string; al
       marginBottom="base"
       overflow="hidden"
       {...props}>
-      <Grid style={{ placeItems: 'center' }} height="0px" paddingTop="56.25%">
+      <Grid style={{ placeItems: "center" }} height="0px" paddingTop="56.25%">
         <Image
           size="102%"
-          left={'-2%'}
-          top={'-2%'}
+          left={"-2%"}
+          top={"-2%"}
           position="absolute"
-          transition={transition('0.45s')}
-          transform={isHovered && 'scale(1.08)'}
-          style={{ willChange: 'transform' }}
+          transition={transition("0.45s")}
+          transform={isHovered && "scale(1.08)"}
+          style={{ willChange: "transform" }}
           src={src}
           alt={alt}
         />
@@ -180,7 +180,7 @@ const GridItemDetails: React.FC<BoxProps & { isHovered?: boolean; page: any }> =
   ({ isHovered, page, ...props }) => (
     <>
       <Flex alignItems="flex-start" justifyContent="flex-start" flexDirection="column">
-        <Title color="currentColor" mb={space('tight')}>
+        <Title color="currentColor" mb={space("tight")}>
           {page.title || page.headings[0]}
         </Title>
         <Description>{page.description}</Description>
@@ -192,20 +192,20 @@ const GridItemDetails: React.FC<BoxProps & { isHovered?: boolean; page: any }> =
 
 const GridCard: React.FC<BoxProps & { page?: any }> = React.memo(({ page, ...rest }) => {
   const { hover, active, bind } = useTouchable({
-    behavior: 'link'
+    behavior: "link"
   })
   return (
     <Box
       position="relative"
-      color={color('text-title')}
-      _hover={{ color: color('accent') }}
+      color={color("text-title")}
+      _hover={{ color: color("accent") }}
       {...rest}
       {...bind}>
       <GridCardImage
         alt={`Graphic for: ${page.title || page.headings[0]}`}
         src={page?.images?.large}
         isHovered={hover || active}
-        mb={'loose'}
+        mb={"loose"}
       />
       <GridItemDetails page={page} />
     </Box>
@@ -214,65 +214,65 @@ const GridCard: React.FC<BoxProps & { page?: any }> = React.memo(({ page, ...res
 
 const getIcon = (icon: string) => {
   switch (icon) {
-    case 'BlockstackIcon':
+    case "BlockstackIcon":
       return (p: BoxProps) => (
         <Grid borderRadius="6px" placeItems="center" bg="#9985FF" size="32px" {...p}>
-          <StxInline size="20px" color={color('bg')} />
+          <StxInline size="20px" color={color("bg")} />
         </Grid>
       )
-    case 'StacksIcon':
+    case "StacksIcon":
       return (p: BoxProps) => (
-        <Grid borderRadius="6px" style={{ placeItems: 'center' }} bg="#9985FF" size="32px" {...p}>
-          <StackIcon size="24px" color={color('bg')} />
+        <Grid borderRadius="6px" style={{ placeItems: "center" }} bg="#9985FF" size="32px" {...p}>
+          <StackIcon size="24px" color={color("bg")} />
         </Grid>
       )
-    case 'RegtestIcon':
+    case "RegtestIcon":
       return (p: BoxProps) => (
-        <Grid borderRadius="6px" style={{ placeItems: 'center' }} bg="#9985FF" size="32px" {...p}>
-          <SitemapIcon size="24px" color={color('bg')} />
+        <Grid borderRadius="6px" style={{ placeItems: "center" }} bg="#9985FF" size="32px" {...p}>
+          <SitemapIcon size="24px" color={color("bg")} />
         </Grid>
       )
-    case 'TestnetIcon':
+    case "TestnetIcon":
       return (p: BoxProps) => (
-        <Grid borderRadius="6px" style={{ placeItems: 'center' }} bg="#9985FF" size="32px" {...p}>
-          <SitemapIcon size="24px" color={color('bg')} />
+        <Grid borderRadius="6px" style={{ placeItems: "center" }} bg="#9985FF" size="32px" {...p}>
+          <SitemapIcon size="24px" color={color("bg")} />
         </Grid>
       )
-    case 'MainnetIcon':
+    case "MainnetIcon":
       return (p: BoxProps) => (
-        <Grid borderRadius="6px" style={{ placeItems: 'center' }} bg="#9985FF" size="32px" {...p}>
-          <SitemapIcon size="24px" color={color('bg')} />
+        <Grid borderRadius="6px" style={{ placeItems: "center" }} bg="#9985FF" size="32px" {...p}>
+          <SitemapIcon size="24px" color={color("bg")} />
         </Grid>
       )
     default:
-      return (p: BoxProps) => <BlockstackLogo size="32px" color={color('accent')} {...p} />
+      return (p: BoxProps) => <BlockstackLogo size="32px" color={color("accent")} {...p} />
   }
 }
 const GridSmallItem: React.FC<BoxProps & { page?: any }> = ({ page, ...rest }) => {
   const { hover, active, bind } = useTouchable({
-    behavior: 'link'
+    behavior: "link"
   })
   const Icon = getIcon(page.icon)
   return (
     <Box
       position="relative"
-      color={color('text-title')}
-      _hover={{ color: color('accent') }}
+      color={color("text-title")}
+      _hover={{ color: color("accent") }}
       {...rest}
       {...bind}>
-      {page.icon ? <Icon mb={space('loose')} /> : null}
+      {page.icon ? <Icon mb={space("loose")} /> : null}
       <GridItemDetails page={page} />
     </Box>
   )
 }
 
-const getComponent = (type: 'default' | 'inline' | 'grid' | 'grid-small') => {
+const getComponent = (type: "default" | "inline" | "grid" | "grid-small") => {
   switch (type) {
-    case 'inline':
+    case "inline":
       return InlineCard
-    case 'grid':
+    case "grid":
       return GridCard
-    case 'grid-small':
+    case "grid-small":
       return GridSmallItem
     default:
       return InlineCard
@@ -281,8 +281,8 @@ const getComponent = (type: 'default' | 'inline' | 'grid' | 'grid-small') => {
 
 export const PageReference: React.FC<BoxProps> = React.memo(({ children, ...rest }) => {
   const content = onlyText(children).trim()
-  const [variant, _paths] = content.includes('\n') ? content.split('\n') : ['default', content]
-  const paths = _paths.includes(', ') ? _paths.split(', ') : [_paths]
+  const [variant, _paths] = content.includes("\n") ? content.split("\n") : ["default", content]
+  const paths = _paths.includes(", ") ? _paths.split(", ") : [_paths]
   const { routes } = useAppState()
 
   if (!routes) return null
@@ -296,9 +296,9 @@ export const PageReference: React.FC<BoxProps> = React.memo(({ children, ...rest
     <Box {...rest}>
       <Grid
         width="100%"
-        gridColumnGap={space('extra-loose')}
-        gridRowGap={space('extra-loose')}
-        mt={space('extra-loose')}
+        gridColumnGap={space("extra-loose")}
+        gridRowGap={space("extra-loose")}
+        mt={space("extra-loose")}
         gridTemplateColumns={[
           `repeat(1, 1fr)`,
           `repeat(${pages.length === 1 ? 1 : 2}, 1fr)`,

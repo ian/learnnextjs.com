@@ -1,7 +1,7 @@
-import React from 'react'
-import { Box, BoxProps, Grid, space } from '@stacks/ui'
-import { transition } from '@common/utils'
-import { Img } from '@components/mdx/image'
+import React from "react"
+import { Box, BoxProps, Grid, space } from "@stacks/ui"
+import { transition } from "@common/utils"
+import { Img } from "@components/mdx/image"
 
 const Image = ({
   src,
@@ -12,7 +12,7 @@ const Image = ({
   <Box
     flexShrink={0}
     style={{
-      willChange: 'transform'
+      willChange: "transform"
     }}
     width="100%"
     size={size}
@@ -35,20 +35,20 @@ export const HoverImage: React.FC<BoxProps & { isHovered?: boolean; src?: string
       bg="#9985FF"
       position="relative"
       borderRadius="12px"
-      mb={space('loose')}
+      mb={space("loose")}
       overflow="hidden"
       {...props}>
-      <Grid style={{ placeItems: 'center' }} height="0px" paddingTop="56.25%">
+      <Grid style={{ placeItems: "center" }} height="0px" paddingTop="56.25%">
         <Image
           width="102%"
           size="102%"
-          transition={transition('0.45s')}
-          transform={isHovered && 'scale(1.08)'}
-          style={{ willChange: 'transform' }}
+          transition={transition("0.45s")}
+          transform={isHovered && "scale(1.08)"}
+          style={{ willChange: "transform" }}
           src={src}
           position="absolute"
-          left={'-2%'}
-          top={'-2%'}
+          left={"-2%"}
+          top={"-2%"}
         />
       </Grid>
     </Box>

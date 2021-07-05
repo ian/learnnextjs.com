@@ -124,7 +124,11 @@
     "typecheck": "tsc --noEmit",
     "typecheck:watch": "npm run typecheck -- --watch"
   },
-
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:format"
+    }
+  },
   "resolutions": {
     "eslint": "^7.17.0"
   }

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react"
 
-import { Box, BoxProps } from '@stacks/ui'
-import { forwardRefWithAs } from '@stacks/ui-core'
+import { Box, BoxProps } from "@stacks/ui"
+import { forwardRefWithAs } from "@stacks/ui-core"
 
-export const MagnifyingGlass = forwardRefWithAs<BoxProps, 'svg'>(({ size, ...props }, ref) => (
+export const MagnifyingGlass = forwardRefWithAs<BoxProps, "svg">(({ size, ...props }, ref) => (
   <Box
     as="svg"
     position="relative"

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react"
 
-import Head from 'next/head'
-import { useFaviconName } from '@common/hooks/use-favicon'
+import Head from "next/head"
+import { useFaviconName } from "@common/hooks/use-favicon"
 
 export const MetaLabels = ({ labels }: any) => {
   return labels?.length ? (

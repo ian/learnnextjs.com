@@ -1,28 +1,28 @@
-import { renderMdx } from '@common/data/mdx'
-import CLARITY_REFERENCE from '../../_data/clarity-reference.json'
-import { slugify } from '@common/utils'
+import { renderMdx } from "@common/data/mdx"
+import CLARITY_REFERENCE from "../../_data/clarity-reference.json"
+import { slugify } from "@common/utils"
 
 const wrapInClarityTicks = (string: string) => {
-  let newString = '```clarity'
+  let newString = "```clarity"
   newString += `
 `
   newString += string.trim()
   newString += `
 `
-  newString += '```'
+  newString += "```"
   return newString
 }
 
 const inlineCode = (string: string) => {
-  let newString = '`'
+  let newString = "`"
   newString += string.trim()
-  newString += '`'
+  newString += "`"
   return newString
 }
 
 const generateMarkdown = () => {
-  let keywords = ''
-  let functions = ''
+  let keywords = ""
+  let functions = ""
 
   CLARITY_REFERENCE.functions
     .sort((a, b) => a.name.localeCompare(b.name))

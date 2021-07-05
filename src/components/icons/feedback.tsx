@@ -1,8 +1,8 @@
-import React from 'react'
-import { Box, BoxProps, transition } from '@stacks/ui'
+import React from "react"
+import { Box, BoxProps, transition } from "@stacks/ui"
 export type SvgProps = React.FC<BoxProps>
 
-export const SadIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
+export const SadIcon: SvgProps = ({ bg = "#E1E3E8", ...props }) => (
   <Box
     as="svg"
     width="28"
@@ -42,7 +42,7 @@ export const SadIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
   </Box>
 )
 
-export const NeutralIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
+export const NeutralIcon: SvgProps = ({ bg = "#E1E3E8", ...props }) => (
   <Box
     as="svg"
     width="28"
@@ -77,7 +77,7 @@ export const NeutralIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
   </Box>
 )
 
-export const HappyIcon: SvgProps = ({ bg = '#E1E3E8', ...props }) => (
+export const HappyIcon: SvgProps = ({ bg = "#E1E3E8", ...props }) => (
   <Box
     as="svg"
     width="28"

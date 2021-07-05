@@ -1,10 +1,10 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true'
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true"
 })
-const path = require('path')
-const { remarkPlugins } = require('./lib/remark-plugins')
-const { rehypePlugins } = require('./lib/rehype-plugins')
-const withFonts = require('next-fonts')
+const path = require("path")
+const { remarkPlugins } = require("./lib/remark-plugins")
+const { rehypePlugins } = require("./lib/rehype-plugins")
+const withFonts = require("next-fonts")
 
 function redirects() {
   return [
@@ -19,8 +19,8 @@ function redirects() {
 module.exports = withFonts(
   withBundleAnalyzer({
     i18n: {
-      locales: ['en-US'],
-      defaultLocale: 'en-US'
+      locales: ["en-US"],
+      defaultLocale: "en-US"
     },
     experimental: {
       modern: true,
@@ -29,30 +29,30 @@ module.exports = withFonts(
       trailingSlash: true
     },
     env: {
-      FATHOM_ID: 'FOEMPXUV'
+      FATHOM_ID: "FOEMPXUV"
     },
     redirects,
-    pageExtensions: ['js', 'ts', 'tsx', 'md', 'mdx'],
+    pageExtensions: ["js", "ts", "tsx", "md", "mdx"],
     webpack: (config, options) => {
       config.module.rules.push({
         test: /.mdx?$/, // load both .md and .mdx files
         use: [
           options.defaultLoaders.babel,
           {
-            loader: '@mdx-js/loader',
+            loader: "@mdx-js/loader",
             options: {
               remarkPlugins,
               rehypePlugins
             }
           },
-          path.join(__dirname, './lib/mdx-frontmatter-loader')
+          path.join(__dirname, "./lib/mdx-frontmatter-loader")
         ]
       })
 
       config.module.rules.push({
         test: /\.ya?ml$/,
-        type: 'json',
-        use: 'yaml-loader'
+        type: "json",
+        use: "yaml-loader"
       })
 
       // if (!options.dev) {

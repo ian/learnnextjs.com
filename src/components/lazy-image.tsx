@@ -1,9 +1,9 @@
-import React from 'react'
-import { Box, BoxProps, useSafeLayoutEffect } from '@stacks/ui'
-import { useSpring, animated, config } from 'react-spring'
-import { useInView } from 'react-intersection-observer'
-import { makeCancelable } from '@common/utils'
-import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from '@stacks/ui-core'
+import React from "react"
+import { Box, BoxProps, useSafeLayoutEffect } from "@stacks/ui"
+import { useSpring, animated, config } from "react-spring"
+import { useInView } from "react-intersection-observer"
+import { makeCancelable } from "@common/utils"
+import { ForwardRefExoticComponentWithAs, forwardRefWithAs } from "@stacks/ui-core"
 
 interface ImageProps {
   /** The source of the image to load */
@@ -25,7 +25,7 @@ const loadImage = (
 ): Promise<any> =>
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   new Promise((resolve, reject) => {
-    if (typeof Image !== 'undefined') {
+    if (typeof Image !== "undefined") {
       const image = new Image()
       if (srcSet) {
         image.srcset = srcSet
@@ -39,7 +39,7 @@ const loadImage = (
       image.src = src
 
       /** @see: https://www.chromestatus.com/feature/5637156160667648 */
-      if (experimentalDecode && 'decode' in image) {
+      if (experimentalDecode && "decode" in image) {
         return (
           image
             // NOTE: .decode() is not in the TS defs yet
@@ -57,13 +57,13 @@ const loadImage = (
     }
   })
 
-export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwardRefWithAs<
+export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, "img"> = forwardRefWithAs<
   BoxProps,
-  'img'
->(({ as = 'img', src, srcSet, style = {}, placeholder, ...props }, forwardedRef) => {
+  "img"
+>(({ as = "img", src, srcSet, style = {}, placeholder, ...props }, forwardedRef) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    rootMargin: '200px 0px'
+    rootMargin: "200px 0px"
   })
 
   const [loading, setLoading] = React.useState(false)
@@ -77,7 +77,7 @@ export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwa
   const onLoad = React.useCallback(
     () =>
       requestAnimationFrame(() => {
-        console.log('on-load')
+        console.log("on-load")
         setSrc({ src, srcSet })
       }),
     []
@@ -88,14 +88,14 @@ export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwa
       setLoading(true)
       loadingPromise.promise
         .then((_res) => {
-          console.log('loaded')
+          console.log("loaded")
           onLoad()
         })
         .catch((e) => {
           // If the Loading Promise was canceled, it means we have stopped
           // loading due to unmount, rather than an error.
           if (!e.isCanceled) {
-            console.error('failed to load image')
+            console.error("failed to load image")
           }
         })
     }
@@ -108,7 +108,7 @@ export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwa
     <Box
       as="span"
       maxWidth="100%"
-      width={['100%', '100%', 'inherit', 'inherit']}
+      width={["100%", "100%", "inherit", "inherit"]}
       display="block"
       position="absolute"
       ref={ref}
@@ -118,7 +118,7 @@ export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwa
           as={animated.img}
           width="100%"
           style={{
-            filter: 'blur(5px)',
+            filter: "blur(5px)",
             ...placeholderProps
           }}
           //@ts-ignore
@@ -128,14 +128,14 @@ export const LazyImage: ForwardRefExoticComponentWithAs<BoxProps, 'img'> = forwa
       {source.src ? (
         <Box
           maxWidth="100%"
-          width={['100%', '100%', 'inherit', 'inherit']}
+          width={["100%", "100%", "inherit", "inherit"]}
           display="block"
-          as={animated.img as unknown as 'img'}
+          as={animated.img as unknown as "img"}
           zIndex={99}
           style={
             {
               opacity: 0,
-              willChange: 'opacity',
+              willChange: "opacity",
               ...style,
               ...styleProps
             } as any

@@ -1,6 +1,6 @@
-import * as React from 'react'
-import { jsx, css, Global } from '@emotion/react'
-import { theme, generateCssVariables } from '@stacks/ui'
+import * as React from "react"
+import { jsx, css, Global } from "@emotion/react"
+import { theme, generateCssVariables } from "@stacks/ui"
 
 export const Base = (
   <Global
@@ -10,11 +10,11 @@ export const Base = (
         -moz-osx-font-smoothing: grayscale;
       }
       :root {
-        ${generateCssVariables('light')({ colorMode: 'light', theme })};
+        ${generateCssVariables("light")({ colorMode: "light", theme })};
         --colors-highlight-line-bg: rgba(255, 255, 255, 0.1);
 
         @media (prefers-color-scheme: dark) {
-          ${generateCssVariables('dark')({ colorMode: 'dark', theme })};
+          ${generateCssVariables("dark")({ colorMode: "dark", theme })};
           --colors-highlight-line-bg: rgba(255, 255, 255, 0.05);
         }
       }
@@ -26,7 +26,7 @@ export const Base = (
 
         &.light {
           :root {
-            ${generateCssVariables('light')({ colorMode: 'light', theme })};
+            ${generateCssVariables("light")({ colorMode: "light", theme })};
             --colors-highlight-line-bg: rgba(255, 255, 255, 0.1);
           }
           * {
@@ -36,7 +36,7 @@ export const Base = (
         }
         &.dark {
           :root {
-            ${generateCssVariables('dark')({ colorMode: 'dark', theme })};
+            ${generateCssVariables("dark")({ colorMode: "dark", theme })};
             --colors-highlight-line-bg: rgba(255, 255, 255, 0.04);
           }
           * {

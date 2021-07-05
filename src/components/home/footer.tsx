@@ -1,25 +1,25 @@
-import React from 'react'
-import { Box, BoxProps, Grid, space, themeColor } from '@stacks/ui'
+import React from "react"
+import { Box, BoxProps, Grid, space, themeColor } from "@stacks/ui"
 
-import { Section, SectionWrapper } from '@components/common'
-import { Text } from '@components/typography'
+import { Section, SectionWrapper } from "@components/common"
+import { Text } from "@components/typography"
 
 const SectionHeading: React.FC<BoxProps> = (props) => (
-  <Text mb={space('base')} display="block" color="white" fontWeight="bolder" {...props} />
+  <Text mb={space("base")} display="block" color="white" fontWeight="bolder" {...props} />
 )
 
 const SectionItem: React.FC<BoxProps> = (props) => (
-  <Text mb={space('tight')} display="block" color={themeColor('ink.300') as any} {...props} />
+  <Text mb={space("tight")} display="block" color={themeColor("ink.300") as any} {...props} />
 )
 
 export const Footer: React.FC<BoxProps> = (props) => (
-  <Box pt={space('extra-loose')} bg="ink">
-    <Section borderTop={`1px solid`} borderColor={'rgb(39, 41, 46)'}>
+  <Box pt={space("extra-loose")} bg="ink">
+    <Section borderTop={`1px solid`} borderColor={"rgb(39, 41, 46)"}>
       <SectionWrapper pt={0}>
         <Grid
           width="100%"
-          gridGap={space('extra-loose')}
-          gridTemplateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)', 'repeat(4, 1fr)']}>
+          gridGap={space("extra-loose")}
+          gridTemplateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)", "repeat(4, 1fr)"]}>
           <Box>
             <SectionHeading>Primitives</SectionHeading>
             <SectionItem>Box</SectionItem>

@@ -1,33 +1,33 @@
-import { renderMdx } from '@common/data/mdx'
-import BNS_REFERENCE from '../../_data/boot-contracts-reference.json'
+import { renderMdx } from "@common/data/mdx"
+import BNS_REFERENCE from "../../_data/boot-contracts-reference.json"
 
 const wrapInClarityTicks = (string: string) => {
-  let newString = '```clarity'
+  let newString = "```clarity"
   newString += `
 `
   newString += string.trim()
   newString += `
 `
-  newString += '```'
+  newString += "```"
   return newString
 }
 
 const inlineCode = (string: string) => {
-  let newString = '`'
+  let newString = "`"
   newString += string.trim()
-  newString += '`'
+  newString += "`"
 
-  if (newString === '``') {
-    newString = ''
+  if (newString === "``") {
+    newString = ""
   }
 
   return newString
 }
 
 const generateMarkdown = () => {
-  let publicFunctions = ''
-  let readonlyFunctions = ''
-  let errorCodes = ''
+  let publicFunctions = ""
+  let readonlyFunctions = ""
+  let errorCodes = ""
 
   BNS_REFERENCE.bns.public_functions.forEach((entry) => {
     publicFunctions += `

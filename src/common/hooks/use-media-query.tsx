@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { useSafeLayoutEffect } from '@stacks/ui'
+import * as React from "react"
+import { useSafeLayoutEffect } from "@stacks/ui"
 
-const isBrowser = typeof window !== 'undefined'
+const isBrowser = typeof window !== "undefined"
 
 const isSupported = (api: string) => isBrowser && api in window
 
@@ -12,12 +12,12 @@ const isSupported = (api: string) => isBrowser && api in window
  */
 export function useMediaQuery(query: string) {
   const [matches, setMatches] = React.useState(() => {
-    if (!isSupported('matchMedia')) return false
+    if (!isSupported("matchMedia")) return false
     return window.matchMedia(query).matches
   })
 
   useSafeLayoutEffect(() => {
-    if (!isSupported('matchMedia')) return
+    if (!isSupported("matchMedia")) return
 
     const mediaQueryList = window.matchMedia(query)
     const listener = () => setMatches(mediaQueryList.matches)

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import {
   Pre,
   THead,
@@ -20,10 +20,10 @@ import {
   Li,
   Sup,
   Section
-} from '@components/mdx/components'
-import { Img } from '@components/mdx/image'
-import { Code } from '@components/mdx/components'
-import { PageReference } from '@components/custom-blocks/page-reference'
+} from "@components/mdx/components"
+import { Img } from "@components/mdx/image"
+import { Code } from "@components/mdx/components"
+import { PageReference } from "@components/custom-blocks/page-reference"
 
 export const Components = {
   h1: () => null,

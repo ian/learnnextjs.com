@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { color } from '@stacks/ui'
-import { useTooltip, TooltipPopup } from '@reach/tooltip'
+import * as React from "react"
+import { color } from "@stacks/ui"
+import { useTooltip, TooltipPopup } from "@reach/tooltip"
 
 const centered = (triggerRect: any, tooltipRect: any) => {
-  if (typeof window === 'undefined') return { left: 0, top: 0 }
+  if (typeof window === "undefined") return { left: 0, top: 0 }
   const triggerCenter = (triggerRect.left as number) + (triggerRect.width as number) / 2
   const left = triggerCenter - tooltipRect.width / 2
   const maxLeft = window.innerWidth - tooltipRect.width - 2
@@ -13,7 +13,7 @@ const centered = (triggerRect: any, tooltipRect: any) => {
   }
 }
 
-export const Tooltip = ({ children, label, 'aria-label': ariaLabel, style = {}, ...rest }: any) => {
+export const Tooltip = ({ children, label, "aria-label": ariaLabel, style = {}, ...rest }: any) => {
   const [trigger, tooltip] = useTooltip()
 
   const { onMouseDown, ...triggerProps } = trigger
@@ -25,14 +25,14 @@ export const Tooltip = ({ children, label, 'aria-label': ariaLabel, style = {}, 
         label={label}
         aria-label={ariaLabel}
         style={{
-          position: 'absolute',
+          position: "absolute",
           zIndex: 99999,
-          background: color('invert'),
-          color: color('bg'),
-          border: 'none',
-          borderRadius: '3px',
-          padding: '0.5em 1em',
-          fontSize: '12px',
+          background: color("invert"),
+          color: color("bg"),
+          border: "none",
+          borderRadius: "3px",
+          padding: "0.5em 1em",
+          fontSize: "12px",
           ...style
         }}
         position={centered}
